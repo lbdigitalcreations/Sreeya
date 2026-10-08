@@ -1,0 +1,211 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: #A4133C;
+  color: white;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+.font-calligraphy {
+  font-family: 'Great Vibes', 'Dancing Script', cursive;
+}
+
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.perspective-1200 {
+  perspective: 1200px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+/* ============ GRADIENT TEXT UTILITIES ============ */
+.text-gradient-red-pink {
+  background: linear-gradient(135deg, #ff1744, #ff69b4, #dc143c);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-gold-pink {
+  background: linear-gradient(135deg, #ffd700, #ff69b4, #ff1744);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ============ GLOW TEXT ============ */
+.glow-title-white {
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.9), 0 0 45px rgba(255, 182, 193, 0.7), 0 0 70px rgba(255, 105, 180, 0.5);
+}
+
+.glow-title-gold {
+  color: #fff2b2;
+  text-shadow: 0 0 20px rgba(255, 215, 0, 0.9), 0 0 45px rgba(255, 140, 0, 0.8), 0 0 80px rgba(255, 69, 0, 0.6);
+}
+
+.glow-text-pink {
+  text-shadow: 0 0 25px rgba(255, 192, 203, 0.9), 0 0 50px rgba(255, 20, 147, 0.8), 0 0 80px rgba(255, 105, 180, 0.6);
+}
+
+.glow-text-gold {
+  filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.8));
+}
+
+@keyframes gentle-float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+.animate-gentle-float {
+  animation: gentle-float 3.5s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.8)) drop-shadow(0 0 35px rgba(255, 105, 180, 0.6)); }
+  50% { filter: drop-shadow(0 0 30px rgba(255, 255, 255, 1)) drop-shadow(0 0 60px rgba(255, 20, 147, 0.9)); }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2.5s ease-in-out infinite;
+}
+
+/* ============ GLASS MORPHISM ============ */
+.glass-card {
+  background: rgba(30, 0, 10, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 105, 180, 0.2);
+}
+
+.glass-pill {
+  background: rgba(20, 0, 8, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 23, 68, 0.3);
+}
+
+/* ============ GLOWING BUTTON ============ */
+.btn-glowing {
+  background: linear-gradient(135deg, #dc143c, #ff1744, #ff69b4);
+  box-shadow: 0 0 20px rgba(255, 23, 68, 0.6), 0 0 40px rgba(255, 23, 68, 0.3);
+  transition: all 0.3s ease;
+}
+
+.btn-glowing:hover {
+  box-shadow: 0 0 30px rgba(255, 23, 68, 0.9), 0 0 60px rgba(255, 23, 68, 0.5);
+  transform: scale(1.03);
+}
+
+/* ============ FLAME ANIMATION ============ */
+.flame-anim {
+  animation: flicker 0.25s ease-in-out infinite alternate;
+  transform-origin: bottom center;
+}
+
+@keyframes flicker {
+  0% {
+    transform: scaleX(1) scaleY(1) rotate(-2deg);
+    filter: drop-shadow(0 0 10px #FFD700) drop-shadow(0 0 25px #FF4500);
+  }
+  50% {
+    transform: scaleX(0.85) scaleY(1.15) rotate(2deg);
+    filter: drop-shadow(0 0 16px #FFA500) drop-shadow(0 0 35px #FF1744);
+  }
+  100% {
+    transform: scaleX(1.1) scaleY(0.9) rotate(-1deg);
+    filter: drop-shadow(0 0 12px #FFD700) drop-shadow(0 0 28px #FF6347);
+  }
+}
+
+/* Blowing wind flutter effect during countdown */
+.flame-wind {
+  animation: wind-flicker 0.15s ease-in-out infinite alternate !important;
+}
+
+@keyframes wind-flicker {
+  0% {
+    transform: scaleX(1.4) scaleY(0.65) skewX(25deg) rotate(15deg);
+    opacity: 0.85;
+  }
+  100% {
+    transform: scaleX(0.7) scaleY(1.3) skewX(-15deg) rotate(-10deg);
+    opacity: 1;
+  }
+}
+
+/* Realistic rising wispy smoke plume */
+@keyframes smoke-drift {
+  0% {
+    opacity: 0.8;
+    transform: translateY(0) scale(0.6) rotate(0deg);
+  }
+  50% {
+    opacity: 0.6;
+    transform: translateY(-25px) scale(1.4) rotate(20deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-55px) scale(2.2) rotate(-25deg);
+  }
+}
+
+.animate-smoke-puff {
+  animation: smoke-drift 2s ease-out forwards;
+}
+
+/* ============ HEARTBEAT ANIMATION ============ */
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.25); }
+}
+
+.animate-heartbeat {
+  animation: heartbeat 1.4s ease-in-out infinite;
+}
+
+/* ============ SLOW SPIN ============ */
+.animate-spin-slow {
+  animation: spin 3s linear infinite;
+}
+
+/* ============ TEXT SHADOW ============ */
+.text-shadow {
+  text-shadow: 0 2px 12px rgba(255, 105, 180, 0.5);
+}
+
+/* ============ RADIAL GRADIENT BG ============ */
+.bg-radial-gradient {
+  background: radial-gradient(ellipse at center, var(--tw-gradient-from) 0%, var(--tw-gradient-via) 50%, var(--tw-gradient-to) 100%);
+}
+
+/* ============ SCROLLBAR STYLING ============ */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0d0003;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #dc143c;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ff1744;
+}
