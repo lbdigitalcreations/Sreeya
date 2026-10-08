@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Volume2, VolumeX, Heart, Cake, Image, MessageSquare, Clock, Sparkles, Home, Calendar } from 'lucide-react';
+import { Volume2, VolumeX, Heart, Cake, Image, MessageSquare, Sparkles, Home, Calendar } from 'lucide-react';
 import { audioEngine } from '../services/audioService';
 
 export const Navbar = ({ friendName, currentPage, totalPages, onNavigatePage }) => {
@@ -21,8 +21,7 @@ export const Navbar = ({ friendName, currentPage, totalPages, onNavigatePage }) 
     { page: 2, name: 'Cake', icon: Cake },
     { page: 3, name: 'Gallery', icon: Image },
     { page: 4, name: 'Letter', icon: MessageSquare },
-    { page: 5, name: 'Timeline', icon: Clock },
-    { page: 6, name: 'Fireworks', icon: Sparkles },
+    { page: 5, name: 'Fireworks', icon: Sparkles },
   ];
 
   return (

@@ -4,13 +4,12 @@ import { LandingHero } from './components/LandingHero';
 import { CakeSurprise } from './components/CakeSurprise';
 import { PhotoGallery } from './components/PhotoGallery';
 import { TypingMessage } from './components/TypingMessage';
-import { MemoryTimeline } from './components/MemoryTimeline';
 import { GrandFinaleSlide } from './components/GrandFinaleSlide';
 import { GrandFinale } from './components/GrandFinale';
 import { Footer } from './components/Footer';
 import { BackgroundEffects } from './components/BackgroundEffects';
 
-const TOTAL_PAGES = 6;
+const TOTAL_PAGES = 5;
 
 function App() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -73,18 +72,10 @@ function App() {
         );
       case 5:
         return (
-          <MemoryTimeline
-            friendName={friendName}
-            onNextPage={() => navigatePage(6)}
-            onPrevPage={() => navigatePage(4)}
-          />
-        );
-      case 6:
-        return (
           <GrandFinaleSlide
             friendName={friendName}
             onRestart={() => navigatePage(1)}
-            onPrevPage={() => navigatePage(5)}
+            onPrevPage={() => navigatePage(4)}
           />
         );
       default:
