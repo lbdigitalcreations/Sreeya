@@ -1,8 +1,12 @@
-// Web Audio API Synthesizer for Background Birthday Music & FX
+import { getAssetUrl } from '../utils/assetHelper';
+
+// Web Audio API Synthesizer for Background Birthday Music & FX + Real MP3 Audio Engine
 
 class BirthdayAudioEngine {
   constructor() {
     this.audioCtx = null;
+    this.bgAudio = null;
+    this.currentTrack = null;
     this.isPlaying = false;
     this.isMuted = false;
     this.currentTempo = 110;
@@ -38,6 +42,25 @@ class BirthdayAudioEngine {
     ];
   }
 
+  initAudioElement() {
+    if (!this.bgAudio && typeof window !== 'undefined') {
+      this.bgAudio = new Audio();
+      this.bgAudio.loop = true;
+      this.bgAudio.addEventListener('play', () => {
+        this.isPlaying = true;
+        this.notifyListeners();
+      });
+      this.bgAudio.addEventListener('pause', () => {
+        this.isPlaying = false;
+        this.notifyListeners();
+      });
+      this.bgAudio.addEventListener('ended', () => {
+        this.isPlaying = false;
+        this.notifyListeners();
+      });
+    }
+  }
+
   initCtx() {
     if (!this.audioCtx) {
       const AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -48,44 +71,70 @@ class BirthdayAudioEngine {
     }
   }
 
-  toggleMusic() {
-    this.initCtx();
-    if (this.isPlaying) {
-      this.stopMusic();
-    } else {
-      this.startMusic();
+  playSong(url = getAssetUrl('vaama_vaama.mp3'), startTime = 70) {
+    this.initAudioElement();
+    if (this.melodyTimer) {
+      clearTimeout(this.melodyTimer);
+      this.melodyTimer = null;
     }
-    return this.isPlaying;
+
+    if (this.bgAudio) {
+      const resolved = getAssetUrl(url);
+      if (!this.bgAudio.src || !this.bgAudio.src.includes(resolved)) {
+        this.bgAudio.src = resolved;
+        this.currentTrack = resolved;
+      }
+      if (startTime !== null && startTime !== undefined) {
+        if (Math.abs(this.bgAudio.currentTime - startTime) > 2) {
+          try {
+            this.bgAudio.currentTime = startTime;
+          } catch {
+            // currentTime will be set on loadedmetadata if not loaded yet
+            this.bgAudio.addEventListener('loadedmetadata', () => {
+              this.bgAudio.currentTime = startTime;
+            }, { once: true });
+          }
+        }
+      }
+      this.bgAudio.muted = this.isMuted;
+      const playPromise = this.bgAudio.play();
+      if (playPromise !== undefined) {
+        playPromise.catch((err) => {
+          console.warn('Playback prevented or audio error:', err);
+        });
+      }
+    }
+
+    this.isPlaying = true;
+    this.notifyListeners();
+  }
+
+  pauseSong() {
+    if (this.bgAudio) {
+      this.bgAudio.pause();
+    }
+    this.isPlaying = false;
+    this.notifyListeners();
+  }
+
+  toggleMusic(url = getAssetUrl('vaama_vaama.mp3'), startTime = 70) {
+    if (this.bgAudio && !this.bgAudio.paused) {
+      this.pauseSong();
+      return false;
+    }
+    this.playSong(url, startTime);
+    return true;
   }
 
   startMusic() {
-    this.initCtx();
-    if (this.isPlaying) return;
-    this.isPlaying = true;
-    this.notifyListeners();
-
-    let index = 0;
-    const beatDurationMs = (60 / this.currentTempo) * 1000;
-
-    const playNextNote = () => {
-      if (!this.isPlaying) return;
-
-      const item = this.happyBirthdayMelody[index];
-      this.playKalimbaNote(item.note, item.duration * 0.9);
-
-      // Play soft bass pad accompaniment on root notes
-      if (index === 0 || index === 6 || index === 12 || index === 19) {
-        this.playSoftPadChord(['C4', 'E4', 'G4']);
-      }
-
-      index = (index + 1) % this.happyBirthdayMelody.length;
-      this.melodyTimer = setTimeout(playNextNote, item.duration * beatDurationMs);
-    };
-
-    playNextNote();
+    // Default to high quality Vaama Vaama song starting at 1:10 (70s)
+    this.playSong(getAssetUrl('vaama_vaama.mp3'), 70);
   }
 
   stopMusic() {
+    if (this.bgAudio) {
+      this.bgAudio.pause();
+    }
     this.isPlaying = false;
     if (this.melodyTimer) {
       clearTimeout(this.melodyTimer);

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import confetti from 'canvas-confetti';
-import { Calendar, Heart, Plus, Sparkles, MapPin, X, Star, Maximize2, Camera, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Calendar, Heart, Plus, Sparkles, MapPin, X, Star, Maximize2, Camera, ChevronLeft, ChevronRight, Music, Play, Pause, Volume2 } from 'lucide-react';
 import { audioEngine } from '../services/audioService';
 import { getAssetUrl } from '../utils/assetHelper';
 
@@ -68,6 +68,16 @@ export const MemoryTimeline = ({ friendName = 'Sreenya', initialMemories, onAddM
       tag: 'Standing By You'
     },
     {
+      id: 'vaama-vaama',
+      date: '01/10 🎶',
+      title: 'Our Song: Vaama Vaama 🎶💖',
+      location: 'Airport Memories & Deep In My Heart',
+      description: 'Listening to "Vaama Vaama" always brings every single thought and emotion back to you. When the chorus hits at 1:10, time stands still and your smile is the only thing that matters in the whole world.',
+      photo: getAssetUrl('4.jpeg'),
+      photoCaption: 'Vaama Vaama Moments ✨',
+      tag: '1.10 🎶'
+    },
+    {
       id: '7',
       date: 'Tomorrow, Oct 9th 🎂',
       title: 'To The Girl Who Stole My Heart 🎂',
@@ -88,6 +98,20 @@ export const MemoryTimeline = ({ friendName = 'Sreenya', initialMemories, onAddM
       tag: 'The Proposal 💍'
     }
   ]);
+
+  const [isPlayingSong, setIsPlayingSong] = useState(false);
+
+  useEffect(() => {
+    const unsub = audioEngine.subscribe((state) => setIsPlayingSong(state));
+    return () => {
+      unsub();
+    };
+  }, []);
+
+  const toggleVaamaVaama = (e) => {
+    if (e) e.stopPropagation();
+    audioEngine.toggleMusic(getAssetUrl('vaama_vaama.mp3'), 70);
+  };
 
   const [proposalAnswer, setProposalAnswer] = useState(null); // null | 'yes' | 'thinking'
 
@@ -204,6 +228,32 @@ export const MemoryTimeline = ({ friendName = 'Sreenya', initialMemories, onAddM
       <p className="text-pink-100/90 text-sm sm:text-base leading-relaxed font-normal">
         {item.description}
       </p>
+
+      {item.id === 'vaama-vaama' && (
+        <div className="mt-4 pt-3.5 border-t border-pink-500/30 flex items-center gap-3">
+          <button
+            type="button"
+            onClick={toggleVaamaVaama}
+            className={`px-5 py-2.5 rounded-full font-bold text-xs sm:text-sm shadow-lg transition-all flex items-center gap-2 cursor-pointer ${
+              isPlayingSong
+                ? 'bg-gradient-to-r from-[#DC143C] to-[#FF69B4] text-white animate-pulse shadow-[0_0_20px_rgba(255,105,180,0.6)]'
+                : 'bg-white/20 hover:bg-white/30 text-white hover:scale-105 active:scale-95'
+            }`}
+          >
+            {isPlayingSong ? (
+              <>
+                <Pause className="w-4 h-4 fill-white" />
+                <span>Pause "Vaama Vaama"</span>
+              </>
+            ) : (
+              <>
+                <Play className="w-4 h-4 fill-white" />
+                <span>Play "Vaama Vaama" (from 1:10) 🎶</span>
+              </>
+            )}
+          </button>
+        </div>
+      )}
     </div>
   );
 
@@ -353,6 +403,32 @@ export const MemoryTimeline = ({ friendName = 'Sreenya', initialMemories, onAddM
           </div>
         </div>
       )}
+
+      {item.id === 'vaama-vaama' && (
+        <div className="mt-3.5 pt-3 border-t border-pink-500/30">
+          <button
+            type="button"
+            onClick={toggleVaamaVaama}
+            className={`w-full py-2.5 px-4 rounded-full font-bold text-xs shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer ${
+              isPlayingSong
+                ? 'bg-gradient-to-r from-[#DC143C] to-[#FF69B4] text-white animate-pulse'
+                : 'bg-white/20 hover:bg-white/30 text-white'
+            }`}
+          >
+            {isPlayingSong ? (
+              <>
+                <Pause className="w-3.5 h-3.5 fill-white" />
+                <span>Pause "Vaama Vaama"</span>
+              </>
+            ) : (
+              <>
+                <Play className="w-3.5 h-3.5 fill-white" />
+                <span>Play "Vaama Vaama" (from 1:10) 🎶</span>
+              </>
+            )}
+          </button>
+        </div>
+      )}
     </div>
   );
 
@@ -386,6 +462,50 @@ export const MemoryTimeline = ({ friendName = 'Sreenya', initialMemories, onAddM
           >
             <Plus className="w-4 h-4" />
             <span>Add New Memory 🌟</span>
+          </button>
+        </div>
+
+        {/* Romantic Soundtrack Player: Vaama Vaama */}
+        <div className="mb-8 sm:mb-12 p-4 sm:p-5 rounded-3xl bg-gradient-to-r from-rose-950/80 via-pink-900/60 to-rose-950/80 border-2 border-pink-500/40 shadow-[0_0_30px_rgba(255,23,68,0.3)] backdrop-blur-md flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+          <div className="flex items-center gap-3.5">
+            <div className={`w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-gradient-to-tr from-[#DC143C] to-[#FF69B4] flex items-center justify-center text-white shadow-lg shrink-0 ${isPlayingSong ? 'animate-pulse' : ''}`}>
+              <Music className="w-5 h-5 sm:w-6 sm:h-6" />
+            </div>
+            <div>
+              <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2">
+                <span className="font-serif font-bold text-white text-base sm:text-lg">
+                  Vaama Vaama — Airport Version
+                </span>
+                <span className="text-[11px] px-2.5 py-0.5 rounded-full bg-rose-500/30 text-pink-200 border border-rose-400/40 font-bold">
+                  Starts at 1:10 🎶
+                </span>
+              </div>
+              <p className="text-xs text-pink-200/90 mt-0.5">
+                The magical melody playing in the background of our story ✨
+              </p>
+            </div>
+          </div>
+
+          <button
+            type="button"
+            onClick={toggleVaamaVaama}
+            className={`w-full sm:w-auto px-6 py-2.5 sm:px-7 sm:py-3 rounded-full font-bold text-xs sm:text-sm shadow-xl transition-all flex items-center justify-center gap-2 cursor-pointer shrink-0 ${
+              isPlayingSong
+                ? 'bg-gradient-to-r from-[#DC143C] to-[#FF69B4] text-white border border-pink-300/60 shadow-[0_0_20px_rgba(255,105,180,0.6)] animate-pulse'
+                : 'bg-white/15 hover:bg-white/25 text-pink-100 border border-white/25 hover:scale-105 active:scale-95'
+            }`}
+          >
+            {isPlayingSong ? (
+              <>
+                <Pause className="w-4 h-4 fill-white" />
+                <span>Pause Music</span>
+              </>
+            ) : (
+              <>
+                <Play className="w-4 h-4 fill-white" />
+                <span>Play "Vaama Vaama" (from 1:10) 🎵</span>
+              </>
+            )}
           </button>
         </div>
 
