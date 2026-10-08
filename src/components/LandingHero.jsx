@@ -1,60 +1,10 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Gift, Heart, Sparkles, RotateCcw, Volume2, ArrowRight, Calendar } from 'lucide-react';
-import confetti from 'canvas-confetti';
-import { audioEngine } from '../services/audioService';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Sparkles, RotateCcw, Volume2, ArrowRight, Calendar } from 'lucide-react';
 import { HeartBlossomTree } from './HeartBlossomTree';
-import { BowArrowIntro } from './BowArrowIntro';
 import { BirthdayDateBanner } from './BirthdayDateBanner';
 
-export const LandingHero = ({ friendName = 'Sreenya', onOpenSurprise, customMessage, onCardUnlocked }) => {
-  const [isOpened, setIsOpened] = useState(false);
-  const [showGiftBoxModal, setShowGiftBoxModal] = useState(false);
-
-  // Triggered when arrow hits heart in BowArrowIntro
-  const handleArrowShootComplete = () => {
-    setIsOpened(true);
-    if (onCardUnlocked) onCardUnlocked();
-    fireCelebrationConfetti();
-  };
-
-  const handleReplayShoot = (e) => {
-    if (e) e.stopPropagation();
-    setIsOpened(false);
-    audioEngine.playSparkleFX();
-  };
-
-  const fireCelebrationConfetti = () => {
-    // Center burst
-    confetti({
-      particleCount: 80,
-      spread: 90,
-      origin: { y: 0.6 },
-      colors: ['#FF1744', '#FFD700', '#FF69B4', '#FFF0F5', '#FF85A1'],
-    });
-
-    // Left cannon
-    setTimeout(() => {
-      confetti({
-        particleCount: 50,
-        angle: 60,
-        spread: 70,
-        origin: { x: 0.1, y: 0.65 },
-        colors: ['#FFD700', '#FF69B4', '#FF1744', '#FFFFFF'],
-      });
-    }, 250);
-
-    // Right cannon
-    setTimeout(() => {
-      confetti({
-        particleCount: 50,
-        angle: 120,
-        spread: 70,
-        origin: { x: 0.9, y: 0.65 },
-        colors: ['#FFD700', '#FF69B4', '#FF1744', '#FFFFFF'],
-      });
-    }, 400);
-  };
+export const LandingHero = ({ friendName = 'Sreenya', onOpenSurprise, customMessage }) => {
 
   return (
     <section className="relative min-h-[calc(100vh-4rem)] flex flex-col items-center justify-center px-4 py-8 overflow-hidden z-10 select-none">
@@ -69,7 +19,7 @@ export const LandingHero = ({ friendName = 'Sreenya', onOpenSurprise, customMess
         >
           <Sparkles className="w-4 h-4 text-amber-300 animate-spin-slow" />
           <span className="text-xs sm:text-sm font-semibold tracking-wider text-pink-200 uppercase">
-            {isOpened ? '✨ Birthday Card Unlocked ✨' : '🏹 Aim At The Heart To Begin ✨'}
+            ✨ Birthday Card Unlocked ✨
           </span>
           <Sparkles className="w-4 h-4 text-amber-300 animate-spin-slow" />
         </motion.div>
@@ -77,41 +27,11 @@ export const LandingHero = ({ friendName = 'Sreenya', onOpenSurprise, customMess
         {/* Live Birthday Date & Countdown Announcement Banner */}
         <BirthdayDateBanner friendName={friendName} />
 
-        {/* Main Content Area: Stage 1 Bow & Arrow VS Stage 2 Unboxed Card */}
+        {/* Main Content Area: Birthday Card */}
         <div className="w-full flex flex-col items-center justify-center min-h-[460px]">
-          <AnimatePresence mode="wait">
-            {!isOpened ? (
-              /* ================= 1. BOW & ARROW TARGETING HEART (MATCHING INSTAGRAM REEL) ================= */
               <motion.div
-                key="bow-arrow-stage"
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.85, y: -30 }}
-                transition={{ duration: 0.6 }}
-                className="w-full max-w-2xl bg-gradient-to-b from-[#FFFDF9] via-[#FAF5EF] to-[#F5ECE2] rounded-3xl p-2.5 sm:p-10 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.6),0_0_40px_rgba(255,105,180,0.25)] border-2 sm:border-4 border-[#FDE047]/60 flex flex-col items-center relative overflow-hidden"
-              >
-                {/* Vintage filigrees */}
-                <div className="absolute top-2 left-2 text-[#D97706] opacity-40 text-xs sm:text-sm font-serif pointer-events-none">❧</div>
-                <div className="absolute top-2 right-2 text-[#D97706] opacity-40 text-xs sm:text-sm font-serif pointer-events-none">☙</div>
-                <div className="absolute bottom-2 left-2 text-[#D97706] opacity-40 text-xs sm:text-sm font-serif pointer-events-none">❧</div>
-                <div className="absolute bottom-2 right-2 text-[#D97706] opacity-40 text-xs sm:text-sm font-serif pointer-events-none">☙</div>
-
-                {/* Inner border dash */}
-                <div className="absolute inset-2 sm:inset-4 rounded-2xl border border-dashed border-[#F472B6]/30 pointer-events-none" />
-
-                {/* Interactive Bow and Arrow Targeting Heart Component */}
-                <BowArrowIntro
-                  friendName={friendName}
-                  onShootComplete={handleArrowShootComplete}
-                />
-              </motion.div>
-            ) : (
-              /* ================= 2. UNLOCKED GREETING CARD (MATCHING INSTAGRAM REEL) ================= */
-              <motion.div
-                key="gift-card-opened"
                 initial={{ opacity: 0, scale: 0.7, y: 50 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.7 }}
                 transition={{
                   duration: 0.8,
                   type: 'spring',
@@ -224,15 +144,7 @@ export const LandingHero = ({ friendName = 'Sreenya', onOpenSurprise, customMess
                   </div>
 
                   {/* Card Bottom Action Bar */}
-                  <div className="mt-6 pt-5 border-t border-pink-200/60 flex flex-col sm:flex-row items-center justify-between gap-3 relative z-10">
-                    <button
-                      onClick={handleReplayShoot}
-                      className="w-full sm:w-auto px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold text-[#9F1239] bg-white/80 hover:bg-white border border-[#FDA4AF] transition-all hover:scale-105 active:scale-95 flex items-center justify-center gap-2 cursor-pointer shadow-sm"
-                    >
-                      <RotateCcw className="w-4 h-4" />
-                      <span>Shoot Arrow Again 🏹</span>
-                    </button>
-
+                  <div className="mt-6 pt-5 border-t border-pink-200/60 flex flex-col sm:flex-row items-center justify-end gap-3 relative z-10">
                     <button
                       onClick={onOpenSurprise}
                       className="w-full sm:w-auto px-8 py-3 rounded-full text-sm sm:text-base font-bold text-white bg-gradient-to-r from-[#E11D48] via-[#FF1744] to-[#F43F5E] hover:brightness-110 transition-all hover:scale-105 active:scale-95 flex items-center justify-center gap-2 cursor-pointer shadow-[0_0_20px_rgba(255,23,68,0.5)]"
@@ -244,8 +156,6 @@ export const LandingHero = ({ friendName = 'Sreenya', onOpenSurprise, customMess
 
                 </div>
               </motion.div>
-            )}
-          </AnimatePresence>
         </div>
 
       </div>

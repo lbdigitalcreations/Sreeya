@@ -24,12 +24,13 @@ import {
   Calendar
 } from 'lucide-react';
 import { audioEngine } from '../services/audioService';
+import { getAssetUrl } from '../utils/assetHelper';
 
 export const PhotoGallery = ({ friendName = 'Sreenya', initialPhotos, onAddPhoto, onNextPage, onPrevPage }) => {
   const [photos, setPhotos] = useState(initialPhotos || [
     {
       id: '1',
-      url: '/1.jpeg',
+      url: getAssetUrl('1.jpeg'),
       title: 'The Cutest Pout & Smile',
       caption: 'The Beautiful Smile ✨',
       date: 'Precious Moments',
@@ -41,7 +42,7 @@ export const PhotoGallery = ({ friendName = 'Sreenya', initialPhotos, onAddPhoto
     },
     {
       id: '3',
-      url: '/3.jpeg',
+      url: getAssetUrl('3.jpeg'),
       title: 'Gentle, Dreamy Eyes',
       caption: 'Unforgettable Days 🌟',
       date: 'Sweet Times',
@@ -53,7 +54,7 @@ export const PhotoGallery = ({ friendName = 'Sreenya', initialPhotos, onAddPhoto
     },
     {
       id: '4',
-      url: '/4.jpeg',
+      url: getAssetUrl('4.jpeg'),
       title: 'The Day I Felt A Crush On You',
       caption: 'I Feel A Crush On You 💘',
       date: 'Sweetest Beginning',
@@ -65,7 +66,7 @@ export const PhotoGallery = ({ friendName = 'Sreenya', initialPhotos, onAddPhoto
     },
     {
       id: '2',
-      url: '/2.jpeg',
+      url: getAssetUrl('2.jpeg'),
       title: 'Angelic Elegance In White',
       caption: 'Pure Happiness & Laughter ❤️',
       date: 'Cherished Memories',
@@ -77,7 +78,7 @@ export const PhotoGallery = ({ friendName = 'Sreenya', initialPhotos, onAddPhoto
     },
     {
       id: '5',
-      url: '/5.jpeg',
+      url: getAssetUrl('5.jpeg'),
       title: 'Breezy & Carefree Spirit',
       caption: 'Crazy Fun & Joy 🎉',
       date: 'Forever Best',
@@ -89,7 +90,7 @@ export const PhotoGallery = ({ friendName = 'Sreenya', initialPhotos, onAddPhoto
     },
     {
       id: '6',
-      url: '/6.jpeg',
+      url: getAssetUrl('6.jpeg'),
       title: 'Subtle Charm & Confidence',
       caption: 'Making Every Day Magical 🌸',
       date: 'Special Bond',
@@ -101,7 +102,7 @@ export const PhotoGallery = ({ friendName = 'Sreenya', initialPhotos, onAddPhoto
     },
     {
       id: '7',
-      url: '/7.jpeg',
+      url: getAssetUrl('7.jpeg'),
       title: 'Contagious, Unfiltered Laughter',
       caption: 'Heart Full of Dreams 💖',
       date: 'Unbreakable Journey',
@@ -113,7 +114,7 @@ export const PhotoGallery = ({ friendName = 'Sreenya', initialPhotos, onAddPhoto
     },
     {
       id: '8',
-      url: '/8.jpeg',
+      url: getAssetUrl('8.jpeg'),
       title: 'Fairy In The Enchanted Woods',
       caption: 'Unfiltered & Real Moments 📸',
       date: 'True Happiness',
@@ -125,7 +126,7 @@ export const PhotoGallery = ({ friendName = 'Sreenya', initialPhotos, onAddPhoto
     },
     {
       id: '9',
-      url: '/9.jpeg',
+      url: getAssetUrl('9.jpeg'),
       title: 'Quiet Wonder & Lost In Thought',
       caption: 'Sweetest Adventures 🌺',
       date: 'Best Companion',
@@ -137,7 +138,7 @@ export const PhotoGallery = ({ friendName = 'Sreenya', initialPhotos, onAddPhoto
     },
     {
       id: '10',
-      url: '/10.jpeg',
+      url: getAssetUrl('10.jpeg'),
       title: 'The Birthday Queen',
       caption: 'Celebrating You Today 🎂',
       date: 'Birthday Special',
@@ -149,7 +150,7 @@ export const PhotoGallery = ({ friendName = 'Sreenya', initialPhotos, onAddPhoto
     },
     {
       id: '11',
-      url: '/11.jpeg',
+      url: getAssetUrl('11.jpeg'),
       title: 'Blooming Toward The Future',
       caption: 'To A Year That Blooms 🌷',
       date: 'Golden Chapter Ahead',
@@ -722,12 +723,15 @@ export const PhotoGallery = ({ friendName = 'Sreenya', initialPhotos, onAddPhoto
                         }}
                       >
                         <img
-                          src={photo.url}
+                          src={getAssetUrl(photo.url)}
                           alt={photo.caption}
                           className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                           loading="lazy"
                           onError={(e) => {
-                            e.target.src = '/1.jpeg';
+                            if (!e.target.dataset.fallbackTried) {
+                              e.target.dataset.fallbackTried = 'true';
+                              e.target.src = getAssetUrl('1.jpeg');
+                            }
                           }}
                         />
 
@@ -806,13 +810,19 @@ export const PhotoGallery = ({ friendName = 'Sreenya', initialPhotos, onAddPhoto
                     <AnimatePresence mode="wait">
                       <motion.img
                         key={cinemaPhoto.id}
-                        src={cinemaPhoto.url}
+                        src={getAssetUrl(cinemaPhoto.url)}
                         alt={cinemaPhoto.caption}
                         initial={{ opacity: 0, scale: 1.05 }}
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0, scale: 0.95 }}
                         transition={{ duration: 0.7 }}
                         className="w-full h-full object-cover object-top"
+                        onError={(e) => {
+                          if (!e.target.dataset.fallbackTried) {
+                            e.target.dataset.fallbackTried = 'true';
+                            e.target.src = getAssetUrl('1.jpeg');
+                          }
+                        }}
                       />
                     </AnimatePresence>
 
@@ -936,7 +946,7 @@ export const PhotoGallery = ({ friendName = 'Sreenya', initialPhotos, onAddPhoto
                               : 'border-white/30 opacity-60 hover:opacity-100'
                           }`}
                         >
-                          <img src={p.url} alt={p.caption} className="w-full h-full object-cover object-top" />
+                          <img src={getAssetUrl(p.url)} alt={p.caption} className="w-full h-full object-cover object-top" />
                         </button>
                       ))}
                     </div>
@@ -970,9 +980,15 @@ export const PhotoGallery = ({ friendName = 'Sreenya', initialPhotos, onAddPhoto
                 >
                   <div className="relative aspect-[4/5] rounded-2xl overflow-hidden bg-black mb-2.5">
                     <img
-                      src={photo.url}
+                      src={getAssetUrl(photo.url)}
                       alt={photo.caption}
                       className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                      onError={(e) => {
+                        if (!e.target.dataset.fallbackTried) {
+                          e.target.dataset.fallbackTried = 'true';
+                          e.target.src = getAssetUrl('1.jpeg');
+                        }
+                      }}
                     />
                     <div className="absolute top-2.5 right-2.5 bg-black/60 backdrop-blur-md px-2.5 py-0.5 rounded-full text-[10px] font-bold text-amber-200 border border-white/20">
                       {photo.badge}
@@ -1156,9 +1172,15 @@ export const PhotoGallery = ({ friendName = 'Sreenya', initialPhotos, onAddPhoto
               {/* Photo Display */}
               <div className="rounded-2xl overflow-hidden max-h-[60vh] sm:max-h-[66vh] flex items-center justify-center bg-black/70 w-full relative">
                 <img
-                  src={activePhoto.url}
+                  src={getAssetUrl(activePhoto.url)}
                   alt={activePhoto.caption}
                   className="max-h-[58vh] sm:max-h-[64vh] w-auto max-w-full object-contain rounded-xl"
+                  onError={(e) => {
+                    if (!e.target.dataset.fallbackTried) {
+                      e.target.dataset.fallbackTried = 'true';
+                      e.target.src = getAssetUrl('1.jpeg');
+                    }
+                  }}
                 />
 
                 {/* Badge Stamp */}
@@ -1239,7 +1261,7 @@ export const PhotoGallery = ({ friendName = 'Sreenya', initialPhotos, onAddPhoto
                           : 'border-white/20 opacity-50 hover:opacity-100'
                       }`}
                     >
-                      <img src={p.url} alt={p.caption} className="w-full h-full object-cover object-top" />
+                      <img src={getAssetUrl(p.url)} alt={p.caption} className="w-full h-full object-cover object-top" />
                     </button>
                   ))}
                 </div>

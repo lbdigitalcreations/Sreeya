@@ -1,5 +1,6 @@
 import React from 'react';
 import { Heart, ExternalLink, Sparkles } from 'lucide-react';
+import { getAssetUrl } from '../utils/assetHelper';
 
 export const Footer = () => {
   return (
@@ -15,7 +16,7 @@ export const Footer = () => {
           <div className="relative">
             <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full overflow-hidden border-2 border-pink-400/50 shadow-[0_0_15px_rgba(255,105,180,0.4)] group-hover:border-pink-300 group-hover:scale-105 transition-all bg-black/40">
               <img
-                src="/logo.jpeg"
+                src={getAssetUrl('logo.jpeg')}
                 alt="LB Digital Creations Logo"
                 className="w-full h-full object-cover"
                 onError={(e) => {

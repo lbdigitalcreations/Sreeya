@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import confetti from 'canvas-confetti';
 import { Calendar, Heart, Plus, Sparkles, MapPin, X, Star, Maximize2, Camera, ChevronLeft, ChevronRight } from 'lucide-react';
 import { audioEngine } from '../services/audioService';
+import { getAssetUrl } from '../utils/assetHelper';
 
 export const MemoryTimeline = ({ friendName = 'Sreenya', initialMemories, onAddMemory, onNextPage, onPrevPage }) => {
   const [memories, setMemories] = useState(initialMemories || [
@@ -12,7 +13,7 @@ export const MemoryTimeline = ({ friendName = 'Sreenya', initialMemories, onAddM
       title: 'The First Day I Asked Her 💌✨',
       location: 'The Very Beginning',
       description: 'The exact date everything began — 07/06/2023. That was the first day I asked you, and from that very moment, you left an impression on my heart that I could never forget.',
-      photo: '/1.jpeg',
+      photo: getAssetUrl('1.jpeg'),
       photoCaption: '07/06/2023 - Where It All Began ✨',
       tag: '07/06/2023 💫'
     },
@@ -22,7 +23,7 @@ export const MemoryTimeline = ({ friendName = 'Sreenya', initialMemories, onAddM
       title: 'Classroom Split & Becoming Classmates 🎒',
       location: 'Our Classroom',
       description: 'From the very next day, when they started splitting the classrooms, fate worked its magic — you were in my class and became my classmate. Going to class every single day suddenly became the best part of my life.',
-      photo: '/2.jpeg',
+      photo: getAssetUrl('2.jpeg'),
       photoCaption: 'Classmates & Secret Smiles ❤️',
       tag: 'My Classmate 🌸'
     },
@@ -32,7 +33,7 @@ export const MemoryTimeline = ({ friendName = 'Sreenya', initialMemories, onAddM
       title: 'She Alone Felt Something Different To Me 💖',
       location: 'Deep In My Heart',
       description: 'In a room full of people, she alone felt something completely different to me. Out of everyone, my eyes and my feelings were drawn only to you. There was a unique, quiet magic about you that set you apart from the rest of the world.',
-      photo: '/3.jpeg',
+      photo: getAssetUrl('3.jpeg'),
       photoCaption: 'One In A Million 🌟',
       tag: 'Something Different 💖'
     },
@@ -42,7 +43,7 @@ export const MemoryTimeline = ({ friendName = 'Sreenya', initialMemories, onAddM
       title: 'Late Night Talks I Never Wanted To End 🌙',
       location: 'Under The Stars',
       description: 'Talking till 2 AM about life, music, and random jokes that only we understood. Listening to your laugh over the phone, I realized this was no longer just a crush — I was genuinely and deeply falling for you.',
-      photo: '/4.jpeg',
+      photo: getAssetUrl('4.jpeg'),
       photoCaption: 'Pure Joy & Sweet Moments 🌸',
       tag: 'Falling For You'
     },
@@ -52,7 +53,7 @@ export const MemoryTimeline = ({ friendName = 'Sreenya', initialMemories, onAddM
       title: 'Adoring Everything About You 🌸',
       location: 'In Every Small Detail',
       description: 'Your kindness, your effortless grace, the way you care so deeply about the people around you, and how you light up any room. The more I got to know you, the more I wished I could be the one to hold your hand.',
-      photo: '/5.jpeg',
+      photo: getAssetUrl('5.jpeg'),
       photoCaption: 'Effortlessly Gorgeous 🌿',
       tag: 'Pure Admiration'
     },
@@ -62,7 +63,7 @@ export const MemoryTimeline = ({ friendName = 'Sreenya', initialMemories, onAddM
       title: 'Wanting To Be Your Safe Place 💖',
       location: 'Through Every Season',
       description: 'In good times and tough days, I always find myself wanting to protect your smile and cheer you on. You bring so much peace and brightness into my life, and standing by you feels so natural.',
-      photo: '/6.jpeg',
+      photo: getAssetUrl('6.jpeg'),
       photoCaption: 'My Favorite Person 🌸',
       tag: 'Standing By You'
     },
@@ -72,7 +73,7 @@ export const MemoryTimeline = ({ friendName = 'Sreenya', initialMemories, onAddM
       title: 'To The Girl Who Stole My Heart 🎂',
       location: 'Straight From The Heart',
       description: `Happy Birthday, ${friendName}! You deserve all the laughter, happiness, and beauty this world has to offer tomorrow and always. Celebrating the wonderful person you are will always be my favorite day of the year.`,
-      photo: '/7.jpeg',
+      photo: getAssetUrl('7.jpeg'),
       photoCaption: 'Celebrating You, Sreenya ❤️',
       tag: 'Birthday Tomorrow ✨'
     },
@@ -82,7 +83,7 @@ export const MemoryTimeline = ({ friendName = 'Sreenya', initialMemories, onAddM
       title: 'Taking The Leap: Will You Be Mine? 💍💖',
       location: 'A Question From My Heart',
       description: 'I do not just want to keep this crush inside or admire you from afar anymore. On your special day, with all the courage in my heart: Sreenya, will you hold my hand and let me be yours?',
-      photo: '/8.jpeg',
+      photo: getAssetUrl('8.jpeg'),
       photoCaption: 'Will You Say Yes? 💍',
       tag: 'The Proposal 💍'
     }
@@ -130,7 +131,7 @@ export const MemoryTimeline = ({ friendName = 'Sreenya', initialMemories, onAddM
       date: date.trim() || 'New Milestone',
       location: location.trim() || 'Special Memory',
       description: description.trim() || 'A priceless moment worth keeping.',
-      photo: photoUrl.trim() || '/1.jpeg',
+      photo: photoUrl.trim() ? getAssetUrl(photoUrl.trim()) : getAssetUrl('1.jpeg'),
       photoCaption: title.trim(),
       tag: tag.trim() || 'Memorable'
     };
@@ -220,11 +221,14 @@ export const MemoryTimeline = ({ friendName = 'Sreenya', initialMemories, onAddM
       <div className="bg-white/95 p-3.5 sm:p-4 rounded-3xl shadow-[0_20px_45px_rgba(0,0,0,0.45)] border-2 border-pink-200/80 text-gray-900 transition-all duration-300">
         <div className="relative w-full aspect-[4/5] rounded-2xl overflow-hidden bg-gray-950 shadow-inner">
           <img
-            src={item.photo}
+            src={getAssetUrl(item.photo)}
             alt={item.title}
             className="w-full h-full object-cover object-top group-hover:scale-106 transition-transform duration-700"
             onError={(e) => {
-              e.target.src = '/1.jpeg';
+              if (!e.target.dataset.fallbackTried) {
+                e.target.dataset.fallbackTried = 'true';
+                e.target.src = getAssetUrl('1.jpeg');
+              }
             }}
           />
 
@@ -318,12 +322,15 @@ export const MemoryTimeline = ({ friendName = 'Sreenya', initialMemories, onAddM
           {/* Photo Frame (aspect 4/5, object-top so faces are never cropped) */}
           <div className="relative w-full aspect-[4/5] rounded-xl overflow-hidden bg-gray-950">
             <img
-              src={item.photo}
+              src={getAssetUrl(item.photo)}
               alt={item.title}
               className="w-full h-full object-cover object-top"
               loading="lazy"
               onError={(e) => {
-                e.target.src = '/1.jpeg';
+                if (!e.target.dataset.fallbackTried) {
+                  e.target.dataset.fallbackTried = 'true';
+                  e.target.src = getAssetUrl('1.jpeg');
+                }
               }}
             />
             {/* Tap to Enlarge Badge */}
@@ -508,9 +515,15 @@ export const MemoryTimeline = ({ friendName = 'Sreenya', initialMemories, onAddM
 
               <div className="rounded-2xl overflow-hidden max-h-[75vh] flex items-center justify-center bg-black/60 w-full">
                 <img
-                  src={lightboxPhoto.url}
+                  src={getAssetUrl(lightboxPhoto.url)}
                   alt={lightboxPhoto.caption}
                   className="max-h-[72vh] w-auto max-w-full object-contain rounded-xl"
+                  onError={(e) => {
+                    if (!e.target.dataset.fallbackTried) {
+                      e.target.dataset.fallbackTried = 'true';
+                      e.target.src = getAssetUrl('1.jpeg');
+                    }
+                  }}
                 />
               </div>
 
