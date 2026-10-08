@@ -65,18 +65,6 @@ export const PhotoGallery = ({ friendName = 'Sreenya', initialPhotos, onAddPhoto
       note: 'The very first moment I saw you smiling like this in your white saree, my heart skipped a beat. That was the exact second my crush began. No matter where life takes you, remember this: the one person is always waiting for you with all my love.'
     },
     {
-      id: '2',
-      url: getAssetUrl('2.jpeg'),
-      title: 'Angelic Elegance In White',
-      caption: 'Pure Happiness & Laughter ❤️',
-      date: 'Cherished Memories',
-      category: 'radiance',
-      badge: 'Angelic Elegance 🤍',
-      rotation: 'rotate-3',
-      likes: 38,
-      note: 'The day you wore this white saree, my heart literally skipped three beats. You looked like an absolute angel. The grace and poise you carry yourself with is pure magic.'
-    },
-    {
       id: '5',
       url: getAssetUrl('5.jpeg'),
       title: 'Breezy & Carefree Spirit',

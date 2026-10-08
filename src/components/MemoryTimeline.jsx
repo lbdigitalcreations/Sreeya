@@ -23,7 +23,7 @@ export const MemoryTimeline = ({ friendName = 'Sreenya', initialMemories, onAddM
       title: 'Classroom Split & Becoming Classmates 🎒',
       location: 'Our Classroom',
       description: 'From the very next day, when they started splitting the classrooms, fate worked its magic — you were in my class and became my classmate. Going to class every single day suddenly became the best part of my life.',
-      photo: getAssetUrl('2.jpeg'),
+      photo: getAssetUrl('9.jpeg'),
       photoCaption: 'Classmates & Secret Smiles ❤️',
       tag: 'My Classmate 🌸'
     },
