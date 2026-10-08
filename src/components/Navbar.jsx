@@ -79,21 +79,21 @@ export const Navbar = ({ friendName, currentPage, totalPages, onNavigatePage }) 
           {/* Music Button */}
           <button
             onClick={toggleMusic}
-            title={isPlaying ? "Mute Background Music" : "Play Birthday Song"}
+            title={isPlaying ? "Mute Background Music" : "Play Vaama Vaama Song 🎵"}
             className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full font-medium text-xs sm:text-sm transition-all shadow-lg border cursor-pointer ${
               isPlaying
                 ? 'bg-gradient-to-r from-[#DC143C] to-[#FF69B4] text-white border-pink-300/60 shadow-[0_0_20px_rgba(255,105,180,0.6)] animate-pulse'
-                : 'bg-black/30 text-pink-200 border-white/20 hover:border-pink-300 hover:text-white'
+                : 'bg-gradient-to-r from-amber-500/25 via-rose-500/20 to-pink-500/25 text-amber-100 border-amber-300/60 hover:border-pink-300 hover:text-white shadow-[0_0_15px_rgba(255,215,0,0.3)] hover:scale-105'
             }`}
           >
             {isPlaying ? (
               <>
                 <Volume2 className="w-4 h-4 text-white animate-bounce" />
-                <span className="hidden sm:inline">Music ON</span>
+                <span className="hidden sm:inline">Music ON 🎶</span>
               </>
             ) : (
               <>
-                <VolumeX className="w-4 h-4 text-pink-300" />
+                <VolumeX className="w-4 h-4 text-amber-300" />
                 <span className="hidden sm:inline">Play Music 🎵</span>
               </>
             )}

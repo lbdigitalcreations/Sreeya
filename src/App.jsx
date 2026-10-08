@@ -9,6 +9,8 @@ import { GrandFinaleSlide } from './components/GrandFinaleSlide';
 import { GrandFinale } from './components/GrandFinale';
 import { Footer } from './components/Footer';
 import { BackgroundEffects } from './components/BackgroundEffects';
+import { MusicPromptModal } from './components/MusicPromptModal';
+import { audioEngine } from './services/audioService';
 
 const TOTAL_PAGES = 6;
 
@@ -20,6 +22,17 @@ function App() {
   const [showGrandFinale, setShowGrandFinale] = useState(false);
 
   const [showBlowPrompt, setShowBlowPrompt] = useState(false);
+  const [showMusicPrompt, setShowMusicPrompt] = useState(true);
+
+  const handleAcceptMusic = () => {
+    audioEngine.startMusic();
+    audioEngine.playSparkleFX();
+    setShowMusicPrompt(false);
+  };
+
+  const handleDeclineMusic = () => {
+    setShowMusicPrompt(false);
+  };
 
   const navigatePage = (page) => {
     // If trying to advance past cake without blowing candles, show polite prompt instead of alert
@@ -117,6 +130,14 @@ function App() {
           </div>
         </div>
       )}
+
+      {/* Entry Modal Asking To Play Background Music */}
+      <MusicPromptModal
+        isOpen={showMusicPrompt}
+        friendName={friendName}
+        onAccept={handleAcceptMusic}
+        onDecline={handleDeclineMusic}
+      />
 
       <GrandFinale
         friendName={friendName}

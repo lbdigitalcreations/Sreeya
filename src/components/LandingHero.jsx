@@ -1,10 +1,21 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Sparkles, RotateCcw, Volume2, ArrowRight, Calendar } from 'lucide-react';
+import { Sparkles, RotateCcw, Volume2, ArrowRight, Calendar, Play, Pause } from 'lucide-react';
 import { HeartBlossomTree } from './HeartBlossomTree';
 import { BirthdayDateBanner } from './BirthdayDateBanner';
+import { audioEngine } from '../services/audioService';
 
 export const LandingHero = ({ friendName = 'Sreenya', onOpenSurprise, customMessage }) => {
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  useEffect(() => {
+    const unsub = audioEngine.subscribe((state) => setIsPlaying(state));
+    return () => unsub();
+  }, []);
+
+  const handleToggleSound = () => {
+    audioEngine.toggleMusic();
+  };
 
   return (
     <section className="relative min-h-[calc(100vh-4rem)] flex flex-col items-center justify-center px-4 py-8 overflow-hidden z-10 select-none">
@@ -128,10 +139,27 @@ export const LandingHero = ({ friendName = 'Sreenya', onOpenSurprise, customMess
                         transition={{ delay: 0.9 }}
                         className="pt-2 flex items-center justify-center md:justify-start gap-3"
                       >
-                        <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#BE123C]/80 bg-[#FFF1F2] px-3.5 py-1.5 rounded-full border border-[#FECDD3]">
-                          <Volume2 className="w-3.5 h-3.5 text-[#E11D48] animate-pulse" />
-                          <span>Birthday Melody Playing 🎵</span>
-                        </div>
+                        <button
+                          type="button"
+                          onClick={handleToggleSound}
+                          className={`flex items-center gap-2 text-xs sm:text-sm font-semibold px-4 py-2 rounded-full border transition-all cursor-pointer shadow-sm ${
+                            isPlaying
+                              ? 'text-[#BE123C] bg-[#FFF1F2] border-[#FECDD3] shadow-[0_0_15px_rgba(255,105,180,0.5)]'
+                              : 'text-[#9F1239] bg-white hover:bg-pink-50 border-[#FDA4AF] hover:scale-105'
+                          }`}
+                        >
+                          {isPlaying ? (
+                            <>
+                              <Volume2 className="w-4 h-4 text-[#E11D48] animate-bounce" />
+                              <span>Playing: Vaama Vaama (from 1:10) 🎶</span>
+                            </>
+                          ) : (
+                            <>
+                              <Play className="w-3.5 h-3.5 text-[#E11D48] fill-[#E11D48]" />
+                              <span>Click to Play Song 🎵</span>
+                            </>
+                          )}
+                        </button>
                       </motion.div>
                     </div>
 
