@@ -88,7 +88,7 @@ export const BirthdayDateBanner = ({ friendName = 'Sreenya' }) => {
                   <span className="text-pink-200">🎉 Today is {friendName}'s Birthday! (October 9th) 🎂</span>
                 ) : (
                   <span>
-                    Birthday Date: <strong className="text-amber-300 underline decoration-pink-400 decoration-2 underline-offset-2">Tomorrow, October 9th</strong> 🎂
+                    Birthday Date: <strong className="text-amber-300 underline decoration-pink-400 decoration-2 underline-offset-2">Today, October 9th</strong> 🎂
                   </span>
                 )}
               </h4>

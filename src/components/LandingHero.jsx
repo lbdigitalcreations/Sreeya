@@ -95,7 +95,7 @@ export const LandingHero = ({ friendName = 'Sreenya', onOpenSurprise, customMess
                         {/* Golden Birthday Date Stamp */}
                         <div className="mt-2 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-amber-100 via-rose-50 to-pink-100 border border-amber-300/80 text-[#9F1239] text-xs sm:text-sm font-bold shadow-sm mx-auto md:mx-0">
                           <Calendar className="w-4 h-4 text-amber-600 shrink-0" />
-                          <span>Birthday Date: <strong className="text-[#E11D48] font-extrabold">Tomorrow, October 9th</strong> 🎂</span>
+                          <span>Birthday Date: <strong className="text-[#E11D48] font-extrabold">Today, October 9th</strong> 🎂</span>
                         </div>
                       </motion.div>
 

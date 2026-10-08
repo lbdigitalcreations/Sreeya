@@ -351,7 +351,7 @@ export const PhotoGallery = ({ friendName = 'Sreenya', initialPhotos, onAddPhoto
               </span>
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gradient-to-r from-amber-500/25 to-pink-500/25 border border-amber-300/50 text-amber-200 text-xs font-bold shadow-sm">
                 <Calendar className="w-3.5 h-3.5 text-amber-300" />
-                <span>Birthday Date: Tomorrow (October 9th) 🎂</span>
+                <span>Birthday Date: Today (October 9th) 🎂</span>
               </span>
             </div>
             <h2 className="font-serif text-3xl sm:text-5xl font-extrabold text-white tracking-tight">

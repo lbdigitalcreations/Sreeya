@@ -163,7 +163,7 @@ export const BowArrowIntro = ({ onShootComplete, friendName = 'Sreenya' }) => {
         </p>
         <div className="mt-1.5 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-rose-100/95 border border-rose-300 text-rose-900 text-[11px] sm:text-xs font-bold shadow-sm">
           <Calendar className="w-3.5 h-3.5 text-rose-600" />
-          <span>Birthday Date: <strong>Tomorrow (October 9th)</strong> ✨</span>
+          <span>Birthday Date: <strong>Today (October 9th)</strong> 🎂</span>
         </div>
       </motion.div>
 

@@ -43,7 +43,7 @@ export const Navbar = ({ friendName, currentPage, totalPages, onNavigatePage }) 
               </span>
               <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-gradient-to-r from-amber-500/30 to-pink-500/30 border border-amber-300/40 text-amber-200 text-[10px] sm:text-[11px] font-bold shadow-sm">
                 <Calendar className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-amber-300" />
-                <span>Tomorrow, Oct 9th</span>
+                <span>Today, Oct 9th 🎂</span>
               </span>
             </div>
             <span className="text-[10px] block text-pink-400/80 uppercase tracking-widest font-semibold">

@@ -233,7 +233,7 @@ export const GrandFinaleSlide = ({ friendName = 'Sreenya', onRestart, onPrevPage
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/40 border border-amber-300/50 text-amber-200 text-xs sm:text-sm font-bold shadow-lg"
           >
             <Calendar className="w-4 h-4 text-amber-400" />
-            <span>Birthday Date: <strong className="text-white">Tomorrow, October 9th</strong> 🎂</span>
+            <span>Birthday Date: <strong className="text-white">Today, October 9th</strong> 🎂</span>
           </motion.div>
         </div>
 
