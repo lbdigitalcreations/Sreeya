@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Volume2, VolumeX, Heart, Settings, Cake, Image, MessageSquare, Clock, Sparkles, Home } from 'lucide-react';
+import { Volume2, VolumeX, Heart, Cake, Image, MessageSquare, Clock, Sparkles, Home } from 'lucide-react';
 import { audioEngine } from '../services/audioService';
 
-export const Navbar = ({ friendName, currentPage, totalPages, onNavigatePage, onOpenCustomizer }) => {
+export const Navbar = ({ friendName, currentPage, totalPages, onNavigatePage }) => {
   const [isPlaying, setIsPlaying] = useState(false);
 
   useEffect(() => {
@@ -46,6 +46,28 @@ export const Navbar = ({ friendName, currentPage, totalPages, onNavigatePage, on
           </div>
         </button>
 
+        {/* Chapter Quick Jump Pills (Desktop / Tablet) */}
+        <nav className="hidden md:flex items-center gap-1 bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/15 shadow-md">
+          {navLinks.map((link) => {
+            const Icon = link.icon;
+            const isActive = currentPage === link.page;
+            return (
+              <button
+                key={link.page}
+                onClick={() => onNavigatePage(link.page)}
+                className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold transition-all cursor-pointer ${
+                  isActive
+                    ? 'bg-gradient-to-r from-[#DC143C] to-[#FF69B4] text-white shadow-[0_0_12px_rgba(255,23,68,0.5)] scale-105'
+                    : 'text-pink-200/70 hover:text-white hover:bg-white/10'
+                }`}
+              >
+                <Icon className="w-3.5 h-3.5" />
+                <span>{link.name}</span>
+              </button>
+            );
+          })}
+        </nav>
+
         {/* Action Controls (Music + Settings) */}
         <div className="flex items-center gap-2 sm:gap-3">
           {/* Music Button */}
@@ -69,15 +91,6 @@ export const Navbar = ({ friendName, currentPage, totalPages, onNavigatePage, on
                 <span className="hidden sm:inline">Play Music 🎵</span>
               </>
             )}
-          </button>
-
-          {/* Customize Settings Button */}
-          <button
-            onClick={onOpenCustomizer}
-            className="p-2 rounded-full bg-black/30 text-pink-300 hover:text-white hover:bg-white/20 border border-white/20 transition-all hover:rotate-90 duration-300 cursor-pointer"
-            title="Customize Name & Letter"
-          >
-            <Settings className="w-4 h-4 sm:w-5 sm:h-5" />
           </button>
         </div>
       </div>

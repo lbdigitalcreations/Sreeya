@@ -4,7 +4,7 @@ import confetti from 'canvas-confetti';
 import { Sparkles, Wind, Heart, Gift, Award, ArrowRight, ChevronRight, Lock, Unlock } from 'lucide-react';
 import { audioEngine } from '../services/audioService';
 
-export const CakeSurprise = ({ friendName, candlesBlown, onBlowCandles, onNextPage }) => {
+export const CakeSurprise = ({ friendName, candlesBlown, onBlowCandles, onNextPage, onPrevPage }) => {
   const [messageRevealed, setMessageRevealed] = useState(false);
   const [countdown, setCountdown] = useState(5);
   const [isCounting, setIsCounting] = useState(false);
@@ -366,6 +366,16 @@ export const CakeSurprise = ({ friendName, candlesBlown, onBlowCandles, onNextPa
                   <Sparkles className="w-4 h-4 text-amber-300 animate-spin-slow" />
                   <span>Pop Confetti Blast 💌</span>
                 </button>
+
+                {onPrevPage && (
+                  <button
+                    type="button"
+                    onClick={onPrevPage}
+                    className="w-full py-2 rounded-2xl text-pink-200/80 hover:text-white font-medium text-xs sm:text-sm flex items-center justify-center gap-1.5 hover:bg-white/10 transition-all cursor-pointer"
+                  >
+                    <span>← Back to Birthday Card</span>
+                  </button>
+                )}
               </div>
             </motion.div>
 

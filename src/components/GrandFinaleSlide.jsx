@@ -21,7 +21,7 @@ import { audioEngine } from '../services/audioService';
 export const PRIMARY_EMAIL = 'keshavkarthikeyan03@gmail.com'; // Saved for activation after template is confirmed!
 export const TEST_EMAIL = 'lonelyboy44y@gmail.com'; // Currently active for testing
 
-export const GrandFinaleSlide = ({ friendName = 'Sreenya', onRestart }) => {
+export const GrandFinaleSlide = ({ friendName = 'Sreenya', onRestart, onPrevPage }) => {
   const [userWish, setUserWish] = useState('');
   const [senderName, setSenderName] = useState('');
   const [selectedTag, setSelectedTag] = useState('Endless Happiness 🌟');
@@ -435,6 +435,16 @@ export const GrandFinaleSlide = ({ friendName = 'Sreenya', onRestart }) => {
 
         {/* Final Celebration Actions */}
         <div className="pt-2 flex flex-wrap items-center justify-center gap-4">
+          {onPrevPage && (
+            <button
+              type="button"
+              onClick={onPrevPage}
+              className="px-6 py-3 rounded-full bg-white/10 hover:bg-white/20 text-pink-200 font-semibold text-xs sm:text-sm hover:text-white flex items-center gap-2 cursor-pointer transition-all active:scale-95 border border-white/20"
+            >
+              ← Back to Timeline 📖
+            </button>
+          )}
+
           <button
             type="button"
             onClick={handleFireworkClick}

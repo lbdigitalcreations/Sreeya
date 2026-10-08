@@ -4,7 +4,7 @@ import confetti from 'canvas-confetti';
 import { Calendar, Heart, Plus, Sparkles, MapPin, X, Star, Maximize2, Camera, ChevronLeft, ChevronRight } from 'lucide-react';
 import { audioEngine } from '../services/audioService';
 
-export const MemoryTimeline = ({ friendName = 'Sreenya', initialMemories, onAddMemory }) => {
+export const MemoryTimeline = ({ friendName = 'Sreenya', initialMemories, onAddMemory, onNextPage, onPrevPage }) => {
   const [memories, setMemories] = useState(initialMemories || [
     {
       id: '1',
@@ -501,6 +501,30 @@ export const MemoryTimeline = ({ friendName = 'Sreenya', initialMemories, onAddM
             )}
           </div>
         </motion.div>
+
+        {/* Navigation Action Buttons */}
+        <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">
+          {onPrevPage && (
+            <button
+              type="button"
+              onClick={onPrevPage}
+              className="w-full sm:w-auto px-6 py-3 rounded-full bg-white/10 hover:bg-white/20 text-pink-200 hover:text-white font-medium text-xs sm:text-sm border border-white/15 transition-all cursor-pointer"
+            >
+              ← Back to Letter 💌
+            </button>
+          )}
+
+          {onNextPage && (
+            <button
+              type="button"
+              onClick={onNextPage}
+              className="w-full sm:w-auto px-8 py-3.5 rounded-full bg-gradient-to-r from-pink-600 via-rose-500 to-pink-500 hover:brightness-110 shadow-[0_0_25px_rgba(255,105,180,0.7)] text-white font-bold text-sm sm:text-base border border-white/25 transition-all cursor-pointer flex items-center justify-center gap-2"
+            >
+              <span>Next: Grand Finale & Fireworks 🎆</span>
+              <ChevronRight className="w-4 h-4" />
+            </button>
+          )}
+        </div>
 
       </div>
 

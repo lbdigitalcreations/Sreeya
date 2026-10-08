@@ -7,19 +7,17 @@ import { TypingMessage } from './components/TypingMessage';
 import { MemoryTimeline } from './components/MemoryTimeline';
 import { GrandFinaleSlide } from './components/GrandFinaleSlide';
 import { GrandFinale } from './components/GrandFinale';
-import { CustomizerModal } from './components/CustomizerModal';
+import { Footer } from './components/Footer';
 import { BackgroundEffects } from './components/BackgroundEffects';
 
 const TOTAL_PAGES = 6;
 
 function App() {
   const [currentPage, setCurrentPage] = useState(1);
-  const [friendName, setFriendName] = useState('Sreenya');
-  const [customMessage, setCustomMessage] = useState('');
+  const [friendName] = useState('Sreenya');
+  const [customMessage] = useState('');
   const [candlesBlown, setCandlesBlown] = useState(false);
   const [showGrandFinale, setShowGrandFinale] = useState(false);
-  const [showCustomizer, setShowCustomizer] = useState(false);
-  const [cardUnlocked, setCardUnlocked] = useState(false);
 
   const [showBlowPrompt, setShowBlowPrompt] = useState(false);
 
@@ -36,11 +34,6 @@ function App() {
     }
   };
 
-  const handleSaveCustom = ({ name, message }) => {
-    if (name) setFriendName(name);
-    if (message !== undefined) setCustomMessage(message);
-  };
-
   const renderPage = () => {
     switch (currentPage) {
       case 1:
@@ -49,7 +42,6 @@ function App() {
             friendName={friendName}
             customMessage={customMessage}
             onOpenSurprise={() => navigatePage(2)}
-            onCardUnlocked={() => setCardUnlocked(true)}
           />
         );
       case 2:
@@ -59,6 +51,7 @@ function App() {
             candlesBlown={candlesBlown}
             onBlowCandles={() => setCandlesBlown(true)}
             onNextPage={() => navigatePage(3)}
+            onPrevPage={() => navigatePage(1)}
           />
         );
       case 3:
@@ -66,6 +59,7 @@ function App() {
           <PhotoGallery
             friendName={friendName}
             onNextPage={() => navigatePage(4)}
+            onPrevPage={() => navigatePage(2)}
           />
         );
       case 4:
@@ -74,6 +68,7 @@ function App() {
             friendName={friendName}
             customMessage={customMessage}
             onNextPage={() => navigatePage(5)}
+            onPrevPage={() => navigatePage(3)}
           />
         );
       case 5:
@@ -81,6 +76,7 @@ function App() {
           <MemoryTimeline
             friendName={friendName}
             onNextPage={() => navigatePage(6)}
+            onPrevPage={() => navigatePage(4)}
           />
         );
       case 6:
@@ -88,6 +84,7 @@ function App() {
           <GrandFinaleSlide
             friendName={friendName}
             onRestart={() => navigatePage(1)}
+            onPrevPage={() => navigatePage(5)}
           />
         );
       default:
@@ -96,7 +93,7 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#A4133C] text-white relative overflow-x-hidden">
+    <div className="min-h-screen bg-[#A4133C] text-white relative overflow-x-hidden flex flex-col">
       <BackgroundEffects />
 
       <Navbar
@@ -104,12 +101,13 @@ function App() {
         currentPage={currentPage}
         totalPages={TOTAL_PAGES}
         onNavigatePage={navigatePage}
-        onOpenCustomizer={() => setShowCustomizer(true)}
       />
 
-      <main className="pt-20 pb-36 sm:pt-16 sm:pb-28">
+      <main className="pt-20 pb-12 sm:pt-16 sm:pb-12 flex-1">
         {renderPage()}
       </main>
+
+      <Footer />
 
       {/* Floating Animated Prompt when Next clicked early */}
       {showBlowPrompt && (
@@ -120,60 +118,10 @@ function App() {
         </div>
       )}
 
-      {/* Bottom Floating Navigation Controls */}
-      {(currentPage > 1 || cardUnlocked) && (
-        <div className="fixed bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-30 flex items-center gap-1.5 sm:gap-4 bg-black/60 sm:bg-black/35 backdrop-blur-md px-3 py-2 sm:px-6 sm:py-3 rounded-full border border-white/20 shadow-[0_8px_30px_rgba(0,0,0,0.4)] max-w-[95vw] w-max select-none">
-          {currentPage > 1 && (
-            <button
-              onClick={() => navigatePage(currentPage - 1)}
-              className="flex items-center gap-1 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-semibold text-white bg-white/15 hover:bg-white/25 border border-white/20 transition-all active:scale-95 cursor-pointer whitespace-nowrap"
-            >
-              ← <span className="hidden sm:inline">Previous</span><span className="sm:hidden">Back</span>
-            </button>
-          )}
-
-          <span className="text-[11px] sm:text-xs tracking-wider uppercase font-semibold text-pink-300/90 px-1 sm:px-2 whitespace-nowrap">
-            {currentPage}/{TOTAL_PAGES}
-          </span>
-
-          {currentPage < TOTAL_PAGES ? (
-            <button
-              onClick={() => navigatePage(currentPage + 1)}
-              className={`flex items-center gap-1.5 px-3.5 py-1.5 sm:px-6 sm:py-2.5 rounded-full text-xs sm:text-sm font-bold text-white transition-all active:scale-95 cursor-pointer whitespace-nowrap ${
-                currentPage === 2 && !candlesBlown
-                  ? 'bg-gradient-to-r from-gray-600 to-gray-700 opacity-70 hover:opacity-90'
-                  : 'bg-gradient-to-r from-pink-600 via-rose-500 to-pink-500 hover:brightness-110 shadow-[0_0_20px_rgba(255,105,180,0.7)]'
-              }`}
-            >
-              {currentPage === 1 && <span>Next: Cake →</span>}
-              {currentPage === 2 && (candlesBlown ? <span>Next: Photos →</span> : <span>Blow Candles First 🎂</span>)}
-              {currentPage === 3 && <span>Next: Letter →</span>}
-              {currentPage === 4 && <span>Next: Timeline →</span>}
-              {currentPage === 5 && <span>Next: Finale 🎆 →</span>}
-            </button>
-          ) : (
-            <button
-              onClick={() => navigatePage(1)}
-              className="flex items-center gap-1.5 px-3.5 py-1.5 sm:px-5 sm:py-2 rounded-full text-xs sm:text-sm font-bold text-white bg-gradient-to-r from-purple-600 to-pink-600 hover:brightness-110 shadow-[0_0_15px_rgba(168,85,247,0.6)] transition-all active:scale-95 cursor-pointer whitespace-nowrap"
-            >
-              ↺ Restart
-            </button>
-          )}
-        </div>
-      )}
-
       <GrandFinale
         friendName={friendName}
         isOpen={showGrandFinale}
         onClose={() => setShowGrandFinale(false)}
-      />
-
-      <CustomizerModal
-        isOpen={showCustomizer}
-        onClose={() => setShowCustomizer(false)}
-        currentName={friendName}
-        currentMessage={customMessage}
-        onSave={handleSaveCustom}
       />
     </div>
   );

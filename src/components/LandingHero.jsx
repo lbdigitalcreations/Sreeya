@@ -225,9 +225,9 @@ export const LandingHero = ({ friendName = 'Sreenya', onOpenSurprise, customMess
 
                     <button
                       onClick={onOpenSurprise}
-                      className="w-full sm:w-auto px-8 py-3 rounded-full text-sm sm:text-base font-bold text-white bg-gradient-to-r from-[#E11D48] via-[#FF1744] to-[#F43F5E] hover:brightness-110 transition-all hover:scale-105 active:scale-95 flex items-center justify-center gap-2.5 cursor-pointer shadow-[0_0_20px_rgba(255,23,68,0.5)]"
+                      className="w-full sm:w-auto px-8 py-3 rounded-full text-sm sm:text-base font-bold text-white bg-gradient-to-r from-[#E11D48] via-[#FF1744] to-[#F43F5E] hover:brightness-110 transition-all hover:scale-105 active:scale-95 flex items-center justify-center gap-2 cursor-pointer shadow-[0_0_20px_rgba(255,23,68,0.5)]"
                     >
-                      <span>Next: Birthday Cake & Wish 🎂</span>
+                      <span>Next</span>
                       <ArrowRight className="w-4 h-4" />
                     </button>
                   </div>

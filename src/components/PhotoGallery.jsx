@@ -24,7 +24,7 @@ import {
 } from 'lucide-react';
 import { audioEngine } from '../services/audioService';
 
-export const PhotoGallery = ({ friendName = 'Sreenya', initialPhotos, onAddPhoto, onNextPage }) => {
+export const PhotoGallery = ({ friendName = 'Sreenya', initialPhotos, onAddPhoto, onNextPage, onPrevPage }) => {
   const [photos, setPhotos] = useState(initialPhotos || [
     {
       id: '1',
@@ -895,11 +895,21 @@ export const PhotoGallery = ({ friendName = 'Sreenya', initialPhotos, onAddPhoto
               Shower Love With Confetti 🎉
             </button>
 
+            {onPrevPage && (
+              <button
+                type="button"
+                onClick={onPrevPage}
+                className="w-full sm:w-auto px-6 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-pink-200 hover:text-white font-medium text-xs sm:text-sm border border-white/15 transition-all cursor-pointer"
+              >
+                ← Back to Cake 🎂
+              </button>
+            )}
+
             {onNextPage && (
               <button
                 type="button"
                 onClick={onNextPage}
-                className="w-full sm:w-auto px-6 py-2.5 rounded-full bg-white/15 hover:bg-white/25 text-white font-bold text-xs sm:text-sm border border-white/20 transition-all cursor-pointer"
+                className="w-full sm:w-auto px-6 py-2.5 rounded-full bg-gradient-to-r from-pink-600 via-rose-500 to-pink-500 hover:brightness-110 shadow-[0_0_20px_rgba(255,105,180,0.6)] text-white font-bold text-xs sm:text-sm border border-white/20 transition-all cursor-pointer"
               >
                 Next: Special Letter 💌 →
               </button>

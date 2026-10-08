@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Heart, Sparkles, RefreshCw, Quote } from 'lucide-react';
 import { audioEngine } from '../services/audioService';
 
-export const TypingMessage = ({ friendName = 'Sreenya', customMessage }) => {
+export const TypingMessage = ({ friendName = 'Sreenya', customMessage, onNextPage, onPrevPage }) => {
   const defaultLetter = customMessage || `Hey Sreenya,
 
 Happy Birthday! 
@@ -157,6 +157,38 @@ Have the happiest birthday, Sreenya! ❤️🎂`;
                 <Heart className="w-5 h-5 text-pink-500 fill-pink-500 animate-pulse" />
                 <span className="font-serif text-base sm:text-lg font-bold text-white">With Warm Wishes ❤️</span>
               </div>
+            </div>
+
+            {/* Letter Navigation Actions */}
+            <div className="mt-6 pt-4 border-t border-pink-500/20 flex flex-wrap items-center justify-between gap-3">
+              {onPrevPage && (
+                <button
+                  type="button"
+                  onClick={onPrevPage}
+                  className="w-full sm:w-auto px-5 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-pink-200 hover:text-white font-medium text-xs sm:text-sm border border-white/15 transition-all cursor-pointer"
+                >
+                  ← Back to Gallery 📷
+                </button>
+              )}
+
+              <button
+                type="button"
+                onClick={handleRestartTyping}
+                className="w-full sm:w-auto px-4 py-2 rounded-full text-pink-300 hover:text-white text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
+              >
+                <RefreshCw className="w-3.5 h-3.5" />
+                <span>Replay Typing</span>
+              </button>
+
+              {onNextPage && (
+                <button
+                  type="button"
+                  onClick={onNextPage}
+                  className="w-full sm:w-auto px-6 py-2.5 rounded-full bg-gradient-to-r from-pink-600 via-rose-500 to-pink-500 hover:brightness-110 shadow-[0_0_20px_rgba(255,105,180,0.6)] text-white font-bold text-xs sm:text-sm border border-white/20 transition-all cursor-pointer"
+                >
+                  Next: Memory Timeline 📖 →
+                </button>
+              )}
             </div>
 
           </motion.div>
