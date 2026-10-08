@@ -40,18 +40,6 @@ export const PhotoGallery = ({ friendName = 'Sreenya', initialPhotos, onAddPhoto
       note: 'You do not even have to try to look breathtaking. Even when you are making funny faces and teasing, you are the most adorable person I know. This picture never fails to make me smile.'
     },
     {
-      id: '2',
-      url: '/2.jpeg',
-      title: 'Angelic Elegance In White',
-      caption: 'Pure Happiness & Laughter ❤️',
-      date: 'Cherished Memories',
-      category: 'radiance',
-      badge: 'Angelic Elegance 🤍',
-      rotation: 'rotate-3',
-      likes: 38,
-      note: 'The day you wore this white saree, my heart literally skipped three beats. You looked like an absolute angel. The grace and poise you carry yourself with is pure magic.'
-    },
-    {
       id: '3',
       url: '/3.jpeg',
       title: 'Gentle, Dreamy Eyes',
@@ -74,6 +62,18 @@ export const PhotoGallery = ({ friendName = 'Sreenya', initialPhotos, onAddPhoto
       rotation: 'rotate-2',
       likes: 68,
       note: 'The very first moment I saw you smiling like this in your white saree, my heart skipped a beat. That was the exact second my crush began. No matter where life takes you, remember this: the one person is always waiting for you with all my love.'
+    },
+    {
+      id: '2',
+      url: '/2.jpeg',
+      title: 'Angelic Elegance In White',
+      caption: 'Pure Happiness & Laughter ❤️',
+      date: 'Cherished Memories',
+      category: 'radiance',
+      badge: 'Angelic Elegance 🤍',
+      rotation: 'rotate-3',
+      likes: 38,
+      note: 'The day you wore this white saree, my heart literally skipped three beats. You looked like an absolute angel. The grace and poise you carry yourself with is pure magic.'
     },
     {
       id: '5',
