@@ -89,13 +89,13 @@ export const MemoryTimeline = ({ friendName = 'Sreenya', initialMemories, onAddM
     },
     {
       id: '8',
-      date: 'The Big Question 💍',
-      title: 'Taking The Leap: Will You Be Mine? 💍💖',
-      location: 'A Question From My Heart',
-      description: 'I do not just want to keep this crush inside or admire you from afar anymore. On your special day, with all the courage in my heart: Sreenya, will you hold my hand and let me be yours?',
+      date: 'A Lifelong Promise 🌟',
+      title: 'Always By Your Side: In Every Chapter 🌟💖',
+      location: 'Now & In Every Tomorrow',
+      description: 'Through every twist and turn of life, through the quiet days and the brightest celebrations, I promise to always stand by your side. To cheer the loudest for your dreams, protect that beautiful smile of yours, and be someone you can always count on — today, tomorrow, and in every chapter yet to come.',
       photo: getAssetUrl('8.jpeg'),
-      photoCaption: 'Will You Say Yes? 💍',
-      tag: 'The Proposal 💍'
+      photoCaption: 'Always In Your Corner 🌟',
+      tag: 'An Everlasting Promise 🌟'
     }
   ]);
 
@@ -112,8 +112,6 @@ export const MemoryTimeline = ({ friendName = 'Sreenya', initialMemories, onAddM
     if (e) e.stopPropagation();
     audioEngine.toggleMusic(getAssetUrl('vaama_vaama.mp3'), 70);
   };
-
-  const [proposalAnswer, setProposalAnswer] = useState(null); // null | 'yes' | 'thinking'
 
   const [lightboxPhoto, setLightboxPhoto] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -177,7 +175,7 @@ export const MemoryTimeline = ({ friendName = 'Sreenya', initialMemories, onAddM
   const renderStoryCard = (item) => (
     <div
       className={`glass-card p-6 sm:p-7 rounded-3xl text-left w-full shadow-[0_15px_35px_rgba(0,0,0,0.35)] transition-all ${
-        item.tag === 'The Proposal 💍'
+        item.tag === 'An Everlasting Promise 🌟'
           ? 'border-2 border-amber-300 shadow-[0_0_40px_rgba(255,215,0,0.5)] bg-gradient-to-br from-rose-950 via-[#3a0314] to-amber-950/90'
           : item.tag === 'For Your Birthday'
           ? 'border-2 border-amber-300/60 shadow-[0_0_30px_rgba(255,215,0,0.3)] bg-gradient-to-br from-rose-950/80 via-black/50 to-amber-950/40'
@@ -187,7 +185,7 @@ export const MemoryTimeline = ({ friendName = 'Sreenya', initialMemories, onAddM
       <div className="flex items-center justify-between gap-2 mb-3">
         <span
           className={`text-xs font-bold uppercase tracking-widest glass-pill px-3.5 py-1 rounded-full ${
-            item.tag === 'The Proposal 💍'
+            item.tag === 'An Everlasting Promise 🌟'
               ? 'text-amber-200 border-amber-300 bg-amber-950/70 shadow-[0_0_15px_rgba(255,215,0,0.4)]'
               : item.tag === 'For Your Birthday'
               ? 'text-amber-300 border-amber-400/40'
@@ -199,15 +197,15 @@ export const MemoryTimeline = ({ friendName = 'Sreenya', initialMemories, onAddM
         {item.tag && (
           <span
             className={`text-xs font-semibold flex items-center gap-1 ${
-              item.tag === 'The Proposal 💍'
+              item.tag === 'An Everlasting Promise 🌟'
                 ? 'text-amber-200 font-bold'
                 : item.tag === 'For Your Birthday'
                 ? 'text-amber-200'
                 : 'text-amber-300'
             }`}
           >
-            {item.tag === 'The Proposal 💍' ? (
-              <>💍 {item.tag}</>
+            {item.tag === 'An Everlasting Promise 🌟' ? (
+              <>🌟 {item.tag}</>
             ) : (
               <><Star className="w-3.5 h-3.5 fill-amber-300" /> {item.tag}</>
             )}
@@ -308,7 +306,7 @@ export const MemoryTimeline = ({ friendName = 'Sreenya', initialMemories, onAddM
   const renderMobileCard = (item) => (
     <div
       className={`glass-card p-5 rounded-3xl text-left w-full shadow-[0_15px_35px_rgba(0,0,0,0.35)] transition-all ${
-        item.tag === 'The Proposal 💍'
+        item.tag === 'An Everlasting Promise 🌟'
           ? 'border-2 border-amber-300 shadow-[0_0_40px_rgba(255,215,0,0.5)] bg-gradient-to-br from-rose-950 via-[#3a0314] to-amber-950/90'
           : item.tag === 'For Your Birthday'
           ? 'border-2 border-amber-300/60 shadow-[0_0_30px_rgba(255,215,0,0.3)] bg-gradient-to-br from-rose-950/80 via-black/50 to-amber-950/40'
@@ -318,7 +316,7 @@ export const MemoryTimeline = ({ friendName = 'Sreenya', initialMemories, onAddM
       <div className="flex items-center justify-between gap-2 mb-2.5">
         <span
           className={`text-xs font-bold uppercase tracking-widest glass-pill px-3 py-1 rounded-full ${
-            item.tag === 'The Proposal 💍'
+            item.tag === 'An Everlasting Promise 🌟'
               ? 'text-amber-200 border-amber-300 bg-amber-950/70 shadow-[0_0_15px_rgba(255,215,0,0.4)]'
               : item.tag === 'For Your Birthday'
               ? 'text-amber-300 border-amber-400/40'
@@ -330,15 +328,15 @@ export const MemoryTimeline = ({ friendName = 'Sreenya', initialMemories, onAddM
         {item.tag && (
           <span
             className={`text-xs font-semibold flex items-center gap-1 ${
-              item.tag === 'The Proposal 💍'
+              item.tag === 'An Everlasting Promise 🌟'
                 ? 'text-amber-200 font-bold'
                 : item.tag === 'For Your Birthday'
                 ? 'text-amber-200'
                 : 'text-amber-300'
             }`}
           >
-            {item.tag === 'The Proposal 💍' ? (
-              <>💍 {item.tag}</>
+            {item.tag === 'An Everlasting Promise 🌟' ? (
+              <>🌟 {item.tag}</>
             ) : (
               <><Star className="w-3.5 h-3.5 fill-amber-300" /> {item.tag}</>
             )}
