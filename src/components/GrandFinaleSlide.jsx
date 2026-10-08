@@ -13,7 +13,8 @@ import {
   Loader2,
   Quote,
   MessageSquareHeart,
-  Clock
+  Clock,
+  Calendar
 } from 'lucide-react';
 import { audioEngine } from '../services/audioService';
 
@@ -204,16 +205,29 @@ export const GrandFinaleSlide = ({ friendName = 'Sreenya', onRestart, onPrevPage
       <div className="max-w-4xl mx-auto w-full relative z-10 space-y-8 sm:space-y-10">
 
         {/* Crown Badge */}
-        <motion.div
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ type: 'spring', stiffness: 200, delay: 0.2 }}
-          className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-gradient-to-r from-amber-400 via-pink-500 to-rose-600 text-white font-bold text-xs sm:text-sm shadow-[0_0_30px_rgba(255,210,0,0.8)] border border-amber-200/50"
-        >
-          <Sparkles className="w-4 h-4 text-amber-200 fill-amber-300 animate-spin-slow" />
-          <span className="uppercase tracking-widest font-extrabold">Grand Birthday Celebration</span>
-          <Sparkles className="w-4 h-4 text-amber-200 fill-amber-300 animate-spin-slow" />
-        </motion.div>
+        <div className="flex flex-col items-center gap-2">
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ type: 'spring', stiffness: 200, delay: 0.2 }}
+            className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-gradient-to-r from-amber-400 via-pink-500 to-rose-600 text-white font-bold text-xs sm:text-sm shadow-[0_0_30px_rgba(255,210,0,0.8)] border border-amber-200/50"
+          >
+            <Sparkles className="w-4 h-4 text-amber-200 fill-amber-300 animate-spin-slow" />
+            <span className="uppercase tracking-widest font-extrabold">Grand Birthday Celebration</span>
+            <Sparkles className="w-4 h-4 text-amber-200 fill-amber-300 animate-spin-slow" />
+          </motion.div>
+
+          {/* Birthday Date Announcement */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.25 }}
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/40 border border-amber-300/50 text-amber-200 text-xs sm:text-sm font-bold shadow-lg"
+          >
+            <Calendar className="w-4 h-4 text-amber-400" />
+            <span>Birthday Date: <strong className="text-white">Tomorrow, October 9th</strong> 🎂</span>
+          </motion.div>
+        </div>
 
         {/* Main Celebration Heading */}
         <motion.h1

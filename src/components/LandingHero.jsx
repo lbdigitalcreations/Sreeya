@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Gift, Heart, Sparkles, RotateCcw, Volume2, ArrowRight } from 'lucide-react';
+import { Gift, Heart, Sparkles, RotateCcw, Volume2, ArrowRight, Calendar } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { audioEngine } from '../services/audioService';
 import { HeartBlossomTree } from './HeartBlossomTree';
 import { BowArrowIntro } from './BowArrowIntro';
+import { BirthdayDateBanner } from './BirthdayDateBanner';
 
 export const LandingHero = ({ friendName = 'Sreenya', onOpenSurprise, customMessage, onCardUnlocked }) => {
   const [isOpened, setIsOpened] = useState(false);
@@ -64,7 +65,7 @@ export const LandingHero = ({ friendName = 'Sreenya', onOpenSurprise, customMess
           initial={{ opacity: 0, y: -20, scale: 0.9 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.8 }}
-          className="inline-flex items-center gap-2 glass-pill px-5 py-2 rounded-full mb-6 shadow-[0_0_20px_rgba(255,23,68,0.4)]"
+          className="inline-flex items-center gap-2 glass-pill px-5 py-2 rounded-full mb-3 shadow-[0_0_20px_rgba(255,23,68,0.4)]"
         >
           <Sparkles className="w-4 h-4 text-amber-300 animate-spin-slow" />
           <span className="text-xs sm:text-sm font-semibold tracking-wider text-pink-200 uppercase">
@@ -72,6 +73,9 @@ export const LandingHero = ({ friendName = 'Sreenya', onOpenSurprise, customMess
           </span>
           <Sparkles className="w-4 h-4 text-amber-300 animate-spin-slow" />
         </motion.div>
+
+        {/* Live Birthday Date & Countdown Announcement Banner */}
+        <BirthdayDateBanner friendName={friendName} />
 
         {/* Main Content Area: Stage 1 Bow & Arrow VS Stage 2 Unboxed Card */}
         <div className="w-full flex flex-col items-center justify-center min-h-[460px]">
@@ -156,6 +160,12 @@ export const LandingHero = ({ friendName = 'Sreenya', onOpenSurprise, customMess
                         <h3 className="font-serif text-xl sm:text-3xl font-extrabold text-[#BE185D] mt-0.5 sm:mt-1 tracking-wide">
                           {friendName} ✨
                         </h3>
+
+                        {/* Golden Birthday Date Stamp */}
+                        <div className="mt-2 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-amber-100 via-rose-50 to-pink-100 border border-amber-300/80 text-[#9F1239] text-xs sm:text-sm font-bold shadow-sm mx-auto md:mx-0">
+                          <Calendar className="w-4 h-4 text-amber-600 shrink-0" />
+                          <span>Birthday Date: <strong className="text-[#E11D48] font-extrabold">Tomorrow, October 9th</strong> 🎂</span>
+                        </div>
                       </motion.div>
 
                       {/* Reel Tagline: "here's to a year that blooms" */}

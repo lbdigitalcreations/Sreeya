@@ -20,7 +20,8 @@ import {
   Eye,
   MessageSquareHeart,
   Send,
-  Compass
+  Compass,
+  Calendar
 } from 'lucide-react';
 import { audioEngine } from '../services/audioService';
 
@@ -61,6 +62,18 @@ export const PhotoGallery = ({ friendName = 'Sreenya', initialPhotos, onAddPhoto
       rotation: '-rotate-3',
       likes: 51,
       note: 'Those eyes hold so much warmth and quiet depth. Looking at this photo feels like listening to your favorite calm acoustic song on a rainy evening — total peace.'
+    },
+    {
+      id: '4',
+      url: '/4.jpeg',
+      title: 'The Day I Felt A Crush On You',
+      caption: 'I Feel A Crush On You 💘',
+      date: 'Sweetest Beginning',
+      category: 'favorite',
+      badge: 'Crush On You 💓',
+      rotation: 'rotate-2',
+      likes: 68,
+      note: 'The very first moment I saw you smiling like this in your white saree, my heart skipped a beat. That was the exact second my crush began. No matter where life takes you, remember this: the one person is always waiting for you with all my love.'
     },
     {
       id: '5',
@@ -342,10 +355,14 @@ export const PhotoGallery = ({ friendName = 'Sreenya', initialPhotos, onAddPhoto
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-6 sm:mb-8 gap-4 sm:gap-6">
           <div>
-            <div className="flex items-center gap-2 mb-2">
+            <div className="flex flex-wrap items-center gap-2 mb-2">
               <span className="text-xs sm:text-sm font-bold uppercase tracking-widest text-pink-300 glass-pill px-3.5 py-1.5 rounded-full inline-flex items-center gap-1.5 border border-pink-400/30">
                 <Sparkles className="w-3.5 h-3.5 text-amber-300" />
                 <span>Memory Scrapbook &bull; {photos.length} Captured Moments</span>
+              </span>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gradient-to-r from-amber-500/25 to-pink-500/25 border border-amber-300/50 text-amber-200 text-xs font-bold shadow-sm">
+                <Calendar className="w-3.5 h-3.5 text-amber-300" />
+                <span>Birthday Date: Tomorrow (October 9th) 🎂</span>
               </span>
             </div>
             <h2 className="font-serif text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
@@ -463,6 +480,130 @@ export const PhotoGallery = ({ friendName = 'Sreenya', initialPhotos, onAddPhoto
           )}
         </div>
 
+        {/* Animated Feature: The One Person Is Always Waiting For You */}
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+          className="relative mb-8 rounded-3xl overflow-hidden p-[2px] bg-gradient-to-r from-pink-500 via-rose-500 via-amber-300 to-pink-500 shadow-[0_0_35px_rgba(255,23,68,0.4)]"
+        >
+          {/* Shimmer background animation */}
+          <div className="absolute inset-0 bg-gradient-to-r from-rose-600/30 via-pink-500/20 to-amber-500/30 animate-pulse pointer-events-none" />
+
+          {/* Floating animated particles within banner */}
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            {[...Array(6)].map((_, i) => (
+              <motion.span
+                key={i}
+                className="absolute text-sm select-none opacity-60"
+                initial={{
+                  x: `${15 + i * 15}%`,
+                  y: '100%',
+                  opacity: 0,
+                  scale: 0.6
+                }}
+                animate={{
+                  y: ['100%', '-20%'],
+                  opacity: [0, 0.8, 0],
+                  scale: [0.6, 1.2, 0.8],
+                  x: [`${15 + i * 15}%`, `${12 + i * 15 + (i % 2 === 0 ? 5 : -5)}%`]
+                }}
+                transition={{
+                  duration: 4 + i * 0.7,
+                  repeat: Infinity,
+                  delay: i * 0.8,
+                  ease: 'easeInOut'
+                }}
+              >
+                {['💖', '✨', '🌸', '💫', '❤️', '💌'][i]}
+              </motion.span>
+            ))}
+          </div>
+
+          <div className="relative bg-gradient-to-r from-[#2A0617]/95 via-[#3D0A23]/95 to-[#240515]/95 backdrop-blur-xl p-4 sm:p-6 rounded-3xl flex flex-col md:flex-row items-center justify-between gap-5 border border-pink-300/30">
+            {/* Animated Beacon & Text */}
+            <div className="flex items-center gap-4 text-center sm:text-left flex-col sm:flex-row">
+              <div className="relative shrink-0">
+                {/* Expanding pulsing ripple ring */}
+                <motion.div
+                  animate={{ scale: [1, 1.5, 1], opacity: [0.6, 0, 0.6] }}
+                  transition={{ duration: 2.4, repeat: Infinity, ease: 'easeOut' }}
+                  className="absolute -inset-2 rounded-2xl bg-pink-500/40 blur-sm pointer-events-none"
+                />
+
+                <motion.div
+                  animate={{
+                    scale: [1, 1.12, 1],
+                    rotate: [0, 3, -3, 0]
+                  }}
+                  transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+                  className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-rose-500 via-pink-600 to-amber-400 p-[2px] shadow-lg flex items-center justify-center text-3xl select-none"
+                >
+                  <div className="w-full h-full rounded-2xl bg-black/50 flex items-center justify-center backdrop-blur-sm">
+                    <motion.span
+                      animate={{ scale: [1, 1.25, 1] }}
+                      transition={{ duration: 1.4, repeat: Infinity }}
+                    >
+                      💖
+                    </motion.span>
+                  </div>
+                </motion.div>
+              </div>
+
+              <div className="space-y-1">
+                {/* Header Tag */}
+                <div className="flex items-center justify-center sm:justify-start gap-2 flex-wrap">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-gradient-to-r from-amber-500/30 to-pink-500/30 border border-amber-300/50 text-amber-200 text-[11px] font-bold tracking-wider uppercase">
+                    <Sparkles className="w-3 h-3 text-amber-300 animate-spin" />
+                    <span>A Constant Promise</span>
+                  </span>
+                  <span className="text-pink-300/80 text-xs hidden sm:inline">&bull; Always In My Heart</span>
+                </div>
+
+                {/* Animated Glowing Title */}
+                <motion.h3
+                  animate={{
+                    textShadow: [
+                      '0 0 20px rgba(255,105,180,0.6)',
+                      '0 0 35px rgba(255,215,0,0.8)',
+                      '0 0 20px rgba(255,105,180,0.6)'
+                    ]
+                  }}
+                  transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+                  className="font-serif text-xl sm:text-2xl md:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white via-pink-200 to-amber-200 leading-tight"
+                >
+                  "The one person is always waiting for you."
+                </motion.h3>
+
+                {/* Romantic Message */}
+                <p className="text-xs sm:text-sm text-pink-100/90 font-sans max-w-xl leading-relaxed">
+                  No matter where your path leads, no matter how busy the days become — there is always one person whose heart remains your safest home, waiting patiently with unconditional warmth, admiration, and love. ✨
+                </p>
+              </div>
+            </div>
+
+            {/* Interactive Love Button */}
+            <div className="shrink-0 flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => {
+                  confetti({
+                    particleCount: 50,
+                    spread: 75,
+                    origin: { y: 0.4 },
+                    colors: ['#FF1744', '#FF69B4', '#FFD700', '#FFFFFF']
+                  });
+                  audioEngine.playSparkleFX();
+                }}
+                className="px-4 py-2.5 rounded-full bg-gradient-to-r from-rose-600 via-pink-600 to-amber-500 hover:from-rose-500 hover:to-pink-500 text-white font-bold text-xs sm:text-sm shadow-[0_0_20px_rgba(255,23,68,0.5)] hover:scale-105 active:scale-95 transition-all flex items-center gap-1.5 cursor-pointer border border-white/20 whitespace-nowrap"
+              >
+                <Heart className="w-4 h-4 fill-white animate-pulse" />
+                <span>Feel The Love 💌</span>
+              </button>
+            </div>
+          </div>
+        </motion.div>
+
         {/* Scrapbook Mode Sub-header helper */}
         {viewMode === 'scrapbook' && (
           <div className="mb-5 text-center">
@@ -507,7 +648,7 @@ export const PhotoGallery = ({ friendName = 'Sreenya', initialPhotos, onAddPhoto
                     style={{
                       transformStyle: 'preserve-3d',
                       transform: isShowingPhoto ? 'rotateY(180deg)' : 'rotateY(0deg)',
-                      minHeight: '380px'
+                      minHeight: '410px'
                     }}
                   >
                     {/* FRONT SIDE (Default): Secret Thought / Memory Letter (matching user's screenshot) */}
@@ -519,29 +660,32 @@ export const PhotoGallery = ({ friendName = 'Sreenya', initialPhotos, onAddPhoto
                       }}
                     >
                       <div className="h-full flex flex-col justify-between p-2.5 sm:p-3 bg-[#FFF9ED] rounded-2xl border border-amber-200 shadow-inner">
-                        <div>
+                        <div className="flex-1 flex flex-col">
                           {/* Top Stamp matching screenshot */}
                           <div className="flex items-center justify-between pb-2 border-b border-amber-300/40 mb-2">
-                            <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-amber-900 bg-amber-100/90 px-2 py-0.5 rounded border border-amber-300/60 flex items-center gap-1">
-                              <span>💌 MY SECRET THOUGHT</span>
+                            <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-rose-950 bg-rose-100/90 px-2.5 py-0.5 rounded border border-rose-200 flex items-center gap-1 shadow-xs">
+                              <span>💌 SECRET MEMORY NOTE</span>
                             </span>
                             <span className="text-xs">❤️</span>
                           </div>
 
-                          <h4 className="font-serif text-sm sm:text-base font-bold text-rose-900 mb-2 leading-snug">
+                          <h4 className="font-serif text-sm sm:text-base font-extrabold text-rose-950 mb-2 leading-snug tracking-tight">
                             {photo.title || photo.caption}
                           </h4>
 
-                          <p className="font-cursive text-sm sm:text-base text-[#5A2D0C] leading-relaxed italic line-clamp-6">
-                            "{photo.note}"
-                          </p>
+                          <div className="flex-1 bg-white/90 p-3 sm:p-3.5 rounded-xl border border-amber-200/90 shadow-xs flex items-center overflow-y-auto max-h-[200px] scrollbar-none my-1">
+                            <p className="font-sans text-xs sm:text-[13px] md:text-sm text-slate-800 leading-relaxed font-normal tracking-normal select-text">
+                              <Quote className="w-3.5 h-3.5 text-rose-500 inline mr-1.5 -mt-1 shrink-0" />
+                              {photo.note}
+                            </p>
+                          </div>
                         </div>
 
-                        <div className="pt-2 border-t border-amber-300/40 flex items-center justify-between mt-3">
+                        <div className="pt-2 border-t border-amber-300/40 flex items-center justify-between mt-2.5">
                           <button
                             type="button"
                             onClick={(e) => handleToggleFlip(e, photo.id)}
-                            className="w-full py-2 rounded-xl bg-gradient-to-r from-rose-600 via-pink-600 to-rose-500 hover:from-rose-500 hover:to-pink-500 text-white font-bold text-xs flex items-center justify-center gap-1.5 shadow-sm cursor-pointer transition-transform active:scale-95"
+                            className="w-full py-2.5 rounded-xl bg-gradient-to-r from-rose-600 via-pink-600 to-rose-500 hover:from-rose-500 hover:to-pink-500 text-white font-bold text-xs flex items-center justify-center gap-1.5 shadow-sm cursor-pointer transition-transform active:scale-95"
                           >
                             <RotateCw className="w-3.5 h-3.5" />
                             <span>Flip To See Photo 📸</span>
@@ -561,7 +705,7 @@ export const PhotoGallery = ({ friendName = 'Sreenya', initialPhotos, onAddPhoto
                     >
                       {/* Top Badge & Number */}
                       <div className="flex items-center justify-between mb-1.5">
-                        <span className="text-[10px] sm:text-xs font-bold text-rose-700 bg-rose-100/90 px-2 py-0.5 rounded-full border border-rose-200">
+                        <span className={`text-[10px] sm:text-xs font-bold text-rose-700 bg-rose-100/90 px-2.5 py-0.5 rounded-full border border-rose-200 ${photo.id === '4' ? 'ring-2 ring-rose-400 animate-pulse' : ''}`}>
                           {photo.badge || `#${index + 1}`}
                         </span>
                         <span className="text-[10px] text-gray-500 font-semibold tracking-wider uppercase">
@@ -597,7 +741,7 @@ export const PhotoGallery = ({ friendName = 'Sreenya', initialPhotos, onAddPhoto
 
                       {/* Polaroid Caption & Action Footer */}
                       <div className="mt-1.5 text-center">
-                        <p className="font-cursive text-sm sm:text-base text-[#8B0000] font-bold leading-tight line-clamp-1">
+                        <p className="font-sans text-xs sm:text-sm text-rose-950 font-bold leading-tight line-clamp-1">
                           {photo.caption}
                         </p>
 
@@ -699,9 +843,12 @@ export const PhotoGallery = ({ friendName = 'Sreenya', initialPhotos, onAddPhoto
                       {cinemaPhoto.title || cinemaPhoto.caption}
                     </h3>
 
-                    <p className="font-cursive text-xl sm:text-2xl text-pink-200/95 leading-relaxed italic border-l-2 border-pink-400 pl-4 py-1 my-4">
-                      "{cinemaPhoto.note}"
-                    </p>
+                    <div className="border-l-4 border-rose-400 pl-4 py-2.5 my-4 bg-white/10 rounded-r-2xl backdrop-blur-md shadow-inner">
+                      <p className="font-sans text-sm sm:text-base md:text-lg text-rose-50 leading-relaxed font-normal">
+                        <Quote className="w-4 h-4 text-amber-300 inline mr-2 -mt-1" />
+                        {cinemaPhoto.note}
+                      </p>
+                    </div>
                   </div>
 
                   {/* Interactive Slideshow Playback Controls */}
@@ -835,7 +982,7 @@ export const PhotoGallery = ({ friendName = 'Sreenya', initialPhotos, onAddPhoto
                   <p className="font-serif text-sm sm:text-base font-bold text-white leading-snug">
                     {photo.title || photo.caption}
                   </p>
-                  <p className="font-cursive text-xs sm:text-sm text-pink-200/90 mt-1 line-clamp-2">
+                  <p className="font-sans text-xs sm:text-sm text-pink-100/90 mt-1.5 leading-relaxed line-clamp-3">
                     "{photo.note}"
                   </p>
 
@@ -1070,9 +1217,12 @@ export const PhotoGallery = ({ friendName = 'Sreenya', initialPhotos, onAddPhoto
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: 'auto' }}
                     exit={{ opacity: 0, height: 0 }}
-                    className="p-3 sm:p-4 rounded-2xl bg-black/60 border border-amber-300/40 text-amber-100 text-xs sm:text-sm font-cursive leading-relaxed"
+                    className="p-3.5 sm:p-4 rounded-2xl bg-black/85 border border-pink-400/50 text-white text-xs sm:text-sm font-sans leading-relaxed shadow-xl"
                   >
-                    "{activePhoto.note}"
+                    <div className="flex items-start gap-2.5">
+                      <Quote className="w-4 h-4 text-pink-400 shrink-0 mt-0.5" />
+                      <p className="font-medium text-pink-50 leading-relaxed">{activePhoto.note}</p>
+                    </div>
                   </motion.div>
                 )}
 

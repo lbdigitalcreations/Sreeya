@@ -8,47 +8,57 @@ export const MemoryTimeline = ({ friendName = 'Sreenya', initialMemories, onAddM
   const [memories, setMemories] = useState(initialMemories || [
     {
       id: '1',
-      date: 'Chapter 1',
-      title: 'The First Time I Saw You 👀✨',
-      location: 'The First Spark',
-      description: 'The exact moment you walked into my world, my heart skipped a beat. A simple glance, but your warmth and radiant presence made you unforgettable. That was the day my crush quietly began.',
+      date: '07/06/2023 📅',
+      title: 'The First Day I Asked Her 💌✨',
+      location: 'The Very Beginning',
+      description: 'The exact date everything began — 07/06/2023. That was the first day I asked you, and from that very moment, you left an impression on my heart that I could never forget.',
       photo: '/1.jpeg',
-      photoCaption: 'The First Glance ✨',
-      tag: 'First Spark'
+      photoCaption: '07/06/2023 - Where It All Began ✨',
+      tag: '07/06/2023 💫'
     },
     {
       id: '2',
-      date: 'Chapter 2',
-      title: 'Secret Smiles & Butterfly Feelings 🦋',
-      location: 'Every Little Conversation',
-      description: 'Whenever you smiled or looked my way, my whole day instantly lit up. I tried so hard to act normal and play it cool, but truth is, having this huge crush on you made every ordinary day feel magical.',
+      date: 'From The Next Day 🏫',
+      title: 'Classroom Split & Becoming Classmates 🎒',
+      location: 'Our Classroom',
+      description: 'From the very next day, when they started splitting the classrooms, fate worked its magic — you were in my class and became my classmate. Going to class every single day suddenly became the best part of my life.',
       photo: '/2.jpeg',
-      photoCaption: 'That Beautiful Smile ❤️',
-      tag: 'Crush Feelings'
+      photoCaption: 'Classmates & Secret Smiles ❤️',
+      tag: 'My Classmate 🌸'
     },
     {
       id: '3',
-      date: 'Chapter 3',
-      title: 'Late Night Talks I Never Wanted To End 🌙',
-      location: 'Under The Stars',
-      description: 'Talking till 2 AM about life, music, and random jokes that only we understood. Listening to your laugh over the phone, I realized this was no longer just a crush — I was genuinely and deeply falling for you.',
+      date: 'A Unique Spark ✨',
+      title: 'She Alone Felt Something Different To Me 💖',
+      location: 'Deep In My Heart',
+      description: 'In a room full of people, she alone felt something completely different to me. Out of everyone, my eyes and my feelings were drawn only to you. There was a unique, quiet magic about you that set you apart from the rest of the world.',
       photo: '/3.jpeg',
-      photoCaption: 'Pure Joy & Laughter 🌟',
-      tag: 'Falling For You'
+      photoCaption: 'One In A Million 🌟',
+      tag: 'Something Different 💖'
     },
     {
       id: '4',
-      date: 'Chapter 4',
+      date: 'Chapter 4 🌙',
+      title: 'Late Night Talks I Never Wanted To End 🌙',
+      location: 'Under The Stars',
+      description: 'Talking till 2 AM about life, music, and random jokes that only we understood. Listening to your laugh over the phone, I realized this was no longer just a crush — I was genuinely and deeply falling for you.',
+      photo: '/4.jpeg',
+      photoCaption: 'Pure Joy & Sweet Moments 🌸',
+      tag: 'Falling For You'
+    },
+    {
+      id: '5',
+      date: 'Chapter 5 🌸',
       title: 'Adoring Everything About You 🌸',
       location: 'In Every Small Detail',
       description: 'Your kindness, your effortless grace, the way you care so deeply about the people around you, and how you light up any room. The more I got to know you, the more I wished I could be the one to hold your hand.',
       photo: '/5.jpeg',
-      photoCaption: 'Effortlessly Gorgeous 🚀',
+      photoCaption: 'Effortlessly Gorgeous 🌿',
       tag: 'Pure Admiration'
     },
     {
-      id: '5',
-      date: 'Chapter 5',
+      id: '6',
+      date: 'Chapter 6 💖',
       title: 'Wanting To Be Your Safe Place 💖',
       location: 'Through Every Season',
       description: 'In good times and tough days, I always find myself wanting to protect your smile and cheer you on. You bring so much peace and brightness into my life, and standing by you feels so natural.',
@@ -57,17 +67,17 @@ export const MemoryTimeline = ({ friendName = 'Sreenya', initialMemories, onAddM
       tag: 'Standing By You'
     },
     {
-      id: '6',
-      date: 'Birthday Wish ✨',
+      id: '7',
+      date: 'Tomorrow, Oct 9th 🎂',
       title: 'To The Girl Who Stole My Heart 🎂',
       location: 'Straight From The Heart',
-      description: `Happy Birthday, ${friendName}! You deserve all the laughter, happiness, and beauty this world has to offer today. Celebrating the wonderful person you are will always be my favorite day of the year.`,
+      description: `Happy Birthday, ${friendName}! You deserve all the laughter, happiness, and beauty this world has to offer tomorrow and always. Celebrating the wonderful person you are will always be my favorite day of the year.`,
       photo: '/7.jpeg',
       photoCaption: 'Celebrating You, Sreenya ❤️',
-      tag: 'For Your Birthday'
+      tag: 'Birthday Tomorrow ✨'
     },
     {
-      id: '7',
+      id: '8',
       date: 'The Big Question 💍',
       title: 'Taking The Leap: Will You Be Mine? 💍💖',
       location: 'A Question From My Heart',
@@ -346,9 +356,15 @@ export const MemoryTimeline = ({ friendName = 'Sreenya', initialMemories, onAddM
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-12 gap-4 sm:gap-6">
           <div>
-            <span className="text-xs sm:text-sm font-bold uppercase tracking-widest text-pink-300 glass-pill px-3.5 py-1.5 rounded-full inline-block mb-2.5 border border-pink-400/30">
-              The Story Of My Feelings 💌 &bull; Falling For You
-            </span>
+            <div className="flex flex-wrap items-center gap-2 mb-2.5">
+              <span className="text-xs sm:text-sm font-bold uppercase tracking-widest text-pink-300 glass-pill px-3.5 py-1.5 rounded-full inline-block border border-pink-400/30">
+                The Story Of My Feelings 💌 &bull; Falling For You
+              </span>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gradient-to-r from-amber-500/25 to-pink-500/25 border border-amber-300/50 text-amber-200 text-xs font-bold shadow-sm">
+                <Calendar className="w-3.5 h-3.5 text-amber-300" />
+                <span>Birthday Date: Tomorrow (October 9th) 🎂</span>
+              </span>
+            </div>
             <h2 className="font-serif text-2xl sm:text-5xl font-bold text-white">
               How I Fell For You, {friendName}
             </h2>

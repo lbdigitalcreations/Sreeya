@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sparkles, Heart } from 'lucide-react';
+import { Sparkles, Heart, Calendar } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { audioEngine } from '../services/audioService';
 
@@ -156,11 +156,15 @@ export const BowArrowIntro = ({ onShootComplete, friendName = 'Sreenya' }) => {
         initial={{ opacity: 0, y: -15 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
-        className="text-center mb-1 sm:mb-4 z-20"
+        className="text-center mb-1 sm:mb-4 z-20 flex flex-col items-center"
       >
         <p className="font-serif italic text-xl sm:text-3xl text-[#5F4842] tracking-wide drop-shadow-sm font-medium">
           a little something, for you
         </p>
+        <div className="mt-1.5 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-rose-100/95 border border-rose-300 text-rose-900 text-[11px] sm:text-xs font-bold shadow-sm">
+          <Calendar className="w-3.5 h-3.5 text-rose-600" />
+          <span>Birthday Date: <strong>Tomorrow (October 9th)</strong> ✨</span>
+        </div>
       </motion.div>
 
       {/* Main Interactive SVG Canvas */}

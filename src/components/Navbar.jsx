@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Volume2, VolumeX, Heart, Cake, Image, MessageSquare, Clock, Sparkles, Home } from 'lucide-react';
+import { Volume2, VolumeX, Heart, Cake, Image, MessageSquare, Clock, Sparkles, Home, Calendar } from 'lucide-react';
 import { audioEngine } from '../services/audioService';
 
 export const Navbar = ({ friendName, currentPage, totalPages, onNavigatePage }) => {
@@ -37,9 +37,15 @@ export const Navbar = ({ friendName, currentPage, totalPages, onNavigatePage }) 
             <Heart className="w-5 h-5 text-white fill-white animate-pulse" />
           </div>
           <div>
-            <span className="font-serif text-base sm:text-xl font-bold bg-gradient-to-r from-white via-pink-200 to-pink-400 bg-clip-text text-transparent">
-              {friendName}'s Day
-            </span>
+            <div className="flex items-center gap-1.5 sm:gap-2">
+              <span className="font-serif text-base sm:text-xl font-bold bg-gradient-to-r from-white via-pink-200 to-pink-400 bg-clip-text text-transparent">
+                {friendName}'s Day
+              </span>
+              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-gradient-to-r from-amber-500/30 to-pink-500/30 border border-amber-300/40 text-amber-200 text-[10px] sm:text-[11px] font-bold shadow-sm">
+                <Calendar className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-amber-300" />
+                <span>Tomorrow, Oct 9th</span>
+              </span>
+            </div>
             <span className="text-[10px] block text-pink-400/80 uppercase tracking-widest font-semibold">
               Page {currentPage} of {totalPages}
             </span>

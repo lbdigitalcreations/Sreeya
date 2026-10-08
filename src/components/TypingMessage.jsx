@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { Heart, Sparkles, RefreshCw, Quote } from 'lucide-react';
+import { Heart, Sparkles, RefreshCw, Quote, Calendar } from 'lucide-react';
 import { audioEngine } from '../services/audioService';
 
 export const TypingMessage = ({ friendName = 'Sreenya', customMessage, onNextPage, onPrevPage }) => {
@@ -59,13 +59,19 @@ Have the happiest birthday, Sreenya! ❤️🎂`;
 
         {/* Section Header */}
         <div className="text-center mb-4">
-          <motion.span
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="text-xs sm:text-sm font-bold uppercase tracking-widest text-pink-300 glass-pill px-4 py-1 rounded-full inline-block mb-1.5"
-          >
-            From The Heart 💌
-          </motion.span>
+          <div className="flex flex-wrap items-center justify-center gap-2 mb-1.5">
+            <motion.span
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="text-xs sm:text-sm font-bold uppercase tracking-widest text-pink-300 glass-pill px-4 py-1 rounded-full inline-block"
+            >
+              From The Heart 💌
+            </motion.span>
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gradient-to-r from-amber-500/25 to-pink-500/25 border border-amber-300/50 text-amber-200 text-xs font-bold shadow-sm">
+              <Calendar className="w-3.5 h-3.5 text-amber-300" />
+              <span>Birthday Date: Tomorrow, October 9th 🎂</span>
+            </span>
+          </div>
           <motion.h2
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}

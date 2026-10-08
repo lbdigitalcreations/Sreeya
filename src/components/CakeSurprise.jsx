@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import confetti from 'canvas-confetti';
-import { Sparkles, Wind, Heart, Gift, Award, ArrowRight, ChevronRight, Lock, Unlock } from 'lucide-react';
+import { Sparkles, Wind, Heart, Gift, Award, ArrowRight, ChevronRight, Lock, Unlock, Calendar } from 'lucide-react';
 import { audioEngine } from '../services/audioService';
 
 export const CakeSurprise = ({ friendName, candlesBlown, onBlowCandles, onNextPage, onPrevPage }) => {
@@ -95,13 +95,19 @@ export const CakeSurprise = ({ friendName, candlesBlown, onBlowCandles, onNextPa
 
         {/* Section Header */}
         <div className="text-center mb-8">
-          <motion.span
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="text-xs sm:text-sm font-bold uppercase tracking-widest text-pink-400 glass-pill px-4 py-1.5 rounded-full inline-block mb-3"
-          >
-            Make A Wish ✨
-          </motion.span>
+          <div className="flex flex-wrap items-center justify-center gap-2 mb-3">
+            <motion.span
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="text-xs sm:text-sm font-bold uppercase tracking-widest text-pink-400 glass-pill px-4 py-1.5 rounded-full inline-block"
+            >
+              Make A Wish ✨
+            </motion.span>
+            <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-gradient-to-r from-amber-500/25 to-pink-500/25 border border-amber-300/50 text-amber-200 text-xs font-bold shadow-sm">
+              <Calendar className="w-3.5 h-3.5 text-amber-300" />
+              <span>Birthday Date: Tomorrow (October 9th) 🎂</span>
+            </span>
+          </div>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
