@@ -83,7 +83,7 @@ export const GrandFinaleSlide = ({ friendName = 'Sreenya', onRestart, onPrevPage
     return () => clearInterval(interval);
   }, []);
 
-  // Send Email Notification via FormSubmit.co (Testing phase: ONLY to TEST_EMAIL lonelyboy44y@gmail.com)
+  // Send Email Notification via FormSubmit.co to both Keshav and lonelyboy
   const sendEmailNotification = async (wishText, fromName, tag) => {
     const formattedDate = new Date().toLocaleString('en-US', {
       dateStyle: 'full',
@@ -102,16 +102,24 @@ export const GrandFinaleSlide = ({ friendName = 'Sreenya', onRestart, onPrevPage
       'Ceremony': 'Sky Lantern Released to the Stars ✨🏮'
     };
 
+    const targetEmails = [
+      PRIMARY_EMAIL, // keshavkarthikeyan03@gmail.com
+      TEST_EMAIL     // lonelyboy44y@gmail.com
+    ];
+
     try {
-      // Send strictly to test email lonelyboy44y@gmail.com
-      await fetch(`https://formsubmit.co/ajax/${TEST_EMAIL}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify(payload)
-      });
+      await Promise.allSettled(
+        targetEmails.map((email) =>
+          fetch(`https://formsubmit.co/ajax/${email}`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            },
+            body: JSON.stringify(payload)
+          })
+        )
+      );
     } catch (err) {
       console.warn('Email notification error:', err);
     }
@@ -283,13 +291,13 @@ export const GrandFinaleSlide = ({ friendName = 'Sreenya', onRestart, onPrevPage
                   Release A Sky Lantern Wish 🏮
                 </h3>
                 <p className="text-[11px] text-pink-200/80">
-                  Your wish floats into the night sky & notifies the inbox directly!
+                  Your wish floats into the night sky to shine forever among the stars! ✨
                 </p>
               </div>
             </div>
 
             <span className="text-xs bg-amber-400/20 text-amber-300 font-bold px-2.5 py-1 rounded-full border border-amber-400/30 shrink-0">
-              💌 Direct Notify
+              ✨ Wish Ceremony 🏮
             </span>
           </div>
 
@@ -395,20 +403,20 @@ export const GrandFinaleSlide = ({ friendName = 'Sreenya', onRestart, onPrevPage
                     ✨ Your sky lantern has taken flight into the stars!
                   </p>
                   <p className="text-[11px] text-emerald-300/90 mt-0.5">
-                    Test notification successfully dispatched to <span className="font-semibold underline text-white">{TEST_EMAIL}</span>. 💌
+                    Your heartfelt wish has taken flight and been sent with love. 💌✨
                   </p>
                 </div>
               </motion.div>
             )}
           </AnimatePresence>
 
-          {/* Email Info Footer Note */}
+          {/* Sky Lantern Ceremony Footer */}
           <div className="mt-3.5 pt-3 border-t border-white/10 flex items-center justify-between text-[11px] text-pink-300/80">
             <span className="flex items-center gap-1.5">
-              <Mail className="w-3.5 h-3.5 text-amber-300" />
-              Test Mode: <span className="text-amber-200 font-semibold">{TEST_EMAIL}</span>
+              <Sparkles className="w-3.5 h-3.5 text-amber-300" />
+              <span>Floating forever into the night sky ✨</span>
             </span>
-            <span className="text-[10px] text-pink-400/80 italic">Ready for template preview</span>
+            <span className="text-[10px] text-pink-400/80">Sent with love 💖</span>
           </div>
         </motion.div>
 
