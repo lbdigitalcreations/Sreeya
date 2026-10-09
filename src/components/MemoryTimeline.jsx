@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import confetti from 'canvas-confetti';
-import { Calendar, Heart, Plus, Sparkles, MapPin, X, Star, Maximize2, Camera, ChevronLeft, ChevronRight, Music, Play, Pause, Volume2 } from 'lucide-react';
+import { Calendar, Heart, Sparkles, MapPin, X, Star, Maximize2, Camera, ChevronLeft, ChevronRight, Music, Play, Pause, Volume2 } from 'lucide-react';
 import { audioEngine } from '../services/audioService';
 import { getAssetUrl } from '../utils/assetHelper';
 
@@ -23,7 +23,7 @@ export const MemoryTimeline = ({ friendName = 'Sreenya', initialMemories, onAddM
       title: 'Classroom Split & Becoming Classmates 🎒',
       location: 'Our Classroom',
       description: 'From the very next day, when they started splitting the classrooms, fate worked its magic — you were in my class and became my classmate. Going to class every single day suddenly became the best part of my life.',
-      photo: getAssetUrl('2.jpeg'),
+      photo: getAssetUrl('9.jpeg'),
       photoCaption: 'Classmates & Secret Smiles ❤️',
       tag: 'My Classmate 🌸'
     },
@@ -68,13 +68,33 @@ export const MemoryTimeline = ({ friendName = 'Sreenya', initialMemories, onAddM
       tag: 'Standing By You'
     },
     {
+      id: 'vaama-vaama',
+      date: '01/10 🎶',
+      title: 'Our Song: Vaama Vaama 🎶💖',
+      location: 'Airport Memories & Deep In My Heart',
+      description: 'Listening to "Vaama Vaama" always brings every single thought and emotion back to you. When the chorus hits at 1:10, time stands still and your smile is the only thing that matters in the whole world.',
+      photo: getAssetUrl('4.jpeg'),
+      photoCaption: 'Vaama Vaama Moments ✨',
+      tag: '1.10 🎶'
+    },
+    {
       id: '7',
       date: 'Today, Oct 9th 🎂',
-      title: 'To The Girl Who Stole My Heart 🎂🌟',
+      title: 'To The Girl Who Stole My Heart 🎂',
       location: 'Straight From The Heart',
-      description: `Happy Birthday, ${friendName}! You deserve all the laughter, happiness, and beauty this world has to offer today and always. Through every twist and turn of life, I promise to always stand by your side — to cheer the loudest for your dreams, protect that beautiful smile of yours, and be someone you can always count on, today and in every chapter yet to come.`,
+      description: `Happy Birthday, ${friendName}! You deserve all the laughter, happiness, and beauty this world has to offer today and always. Celebrating the wonderful person you are will always be my favorite day of the year.`,
       photo: getAssetUrl('7.jpeg'),
       photoCaption: 'Celebrating You, Sreenya ❤️',
+      tag: 'Happy Birthday Today! 🎂'
+    },
+    {
+      id: '8',
+      date: 'A Lifelong Promise 🌟',
+      title: 'Always By Your Side: In Every Chapter 🌟💖',
+      location: 'Now & In Every Tomorrow',
+      description: 'Through every twist and turn of life, through the quiet days and the brightest celebrations, I promise to always stand by your side. To cheer the loudest for your dreams, protect that beautiful smile of yours, and be someone you can always count on — today, tomorrow, and in every chapter yet to come.',
+      photo: getAssetUrl('8.jpeg'),
+      photoCaption: 'Always In Your Corner 🌟',
       tag: 'An Everlasting Promise 🌟'
     }
   ]);
@@ -433,14 +453,6 @@ export const MemoryTimeline = ({ friendName = 'Sreenya', initialMemories, onAddM
               From the very first spark to the biggest wish in my heart...
             </p>
           </div>
-
-          <button
-            onClick={() => setIsModalOpen(true)}
-            className="self-start md:self-auto flex items-center gap-2 px-4 py-2.5 sm:px-5 sm:py-3 rounded-full bg-gradient-to-r from-[#DC143C] to-[#FF69B4] text-white font-bold text-xs sm:text-sm shadow-[0_0_20px_rgba(255,23,68,0.5)] hover:scale-105 active:scale-95 transition-transform cursor-pointer border border-white/20"
-          >
-            <Plus className="w-4 h-4" />
-            <span>Add New Memory 🌟</span>
-          </button>
         </div>
 
         {/* Romantic Soundtrack Player: Vaama Vaama */}

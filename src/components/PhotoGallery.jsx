@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import confetti from 'canvas-confetti';
 import {
   Heart,
-  Plus,
   X,
   Maximize2,
   Sparkles,
@@ -360,16 +359,6 @@ export const PhotoGallery = ({ friendName = 'Sreenya', initialPhotos, onAddPhoto
             <p className="text-pink-200/80 text-xs sm:text-base mt-1.5 max-w-xl">
               Every snapshot tells a story of your beauty, your laughter, and the reasons I fell for you.
             </p>
-          </div>
-
-          <div className="flex items-center gap-2.5 self-start md:self-auto flex-wrap">
-            <button
-              onClick={() => setIsAddModalOpen(true)}
-              className="flex items-center gap-1.5 px-4 py-2.5 rounded-full bg-gradient-to-r from-[#DC143C] to-[#FF69B4] text-white font-bold text-xs sm:text-sm shadow-[0_0_20px_rgba(255,23,68,0.5)] hover:scale-105 active:scale-95 transition-transform cursor-pointer border border-white/20"
-            >
-              <Plus className="w-4 h-4" />
-              <span>Add Photo 📷</span>
-            </button>
           </div>
         </div>
 
