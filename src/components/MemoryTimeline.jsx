@@ -13,7 +13,7 @@ export const MemoryTimeline = ({ friendName = 'Sreenya', initialMemories, onAddM
       title: 'The First Day I Asked Her 💌✨',
       location: 'The Very Beginning',
       description: 'The exact date everything began — 07/06/2023. That was the first day I asked you, and from that very moment, you left an impression on my heart that I could never forget.',
-      photo: getAssetUrl('1.jpeg'),
+      photo: getAssetUrl('timeline_1.jpeg'),
       photoCaption: '07/06/2023 - Where It All Began ✨',
       tag: '07/06/2023 💫'
     },
@@ -23,7 +23,7 @@ export const MemoryTimeline = ({ friendName = 'Sreenya', initialMemories, onAddM
       title: 'Classroom Split & Becoming Classmates 🎒',
       location: 'Our Classroom',
       description: 'From the very next day, when they started splitting the classrooms, fate worked its magic — you were in my class and became my classmate. Going to class every single day suddenly became the best part of my life.',
-      photo: getAssetUrl('9.jpeg'),
+      photo: getAssetUrl('timeline_2.jpeg'),
       photoCaption: 'Classmates & Secret Smiles ❤️',
       tag: 'My Classmate 🌸'
     },
@@ -33,7 +33,7 @@ export const MemoryTimeline = ({ friendName = 'Sreenya', initialMemories, onAddM
       title: 'She Alone Felt Something Different To Me 💖',
       location: 'Deep In My Heart',
       description: 'In a room full of people, she alone felt something completely different to me. Out of everyone, my eyes and my feelings were drawn only to you. There was a unique, quiet magic about you that set you apart from the rest of the world.',
-      photo: getAssetUrl('3.jpeg'),
+      photo: getAssetUrl('timeline_3.jpeg'),
       photoCaption: 'One In A Million 🌟',
       tag: 'Something Different 💖'
     },
@@ -43,7 +43,7 @@ export const MemoryTimeline = ({ friendName = 'Sreenya', initialMemories, onAddM
       title: 'Late Night Talks I Never Wanted To End 🌙',
       location: 'Under The Stars',
       description: 'Talking till 2 AM about life, music, and random jokes that only we understood. Listening to your laugh over the phone, I realized this was no longer just a crush — I was genuinely and deeply falling for you.',
-      photo: getAssetUrl('4.jpeg'),
+      photo: getAssetUrl('timeline_4.jpeg'),
       photoCaption: 'Pure Joy & Sweet Moments 🌸',
       tag: 'Falling For You'
     },
@@ -53,7 +53,7 @@ export const MemoryTimeline = ({ friendName = 'Sreenya', initialMemories, onAddM
       title: 'Adoring Everything About You 🌸',
       location: 'In Every Small Detail',
       description: 'Your kindness, your effortless grace, the way you care so deeply about the people around you, and how you light up any room. The more I got to know you, the more I wished I could be the one to hold your hand.',
-      photo: getAssetUrl('5.jpeg'),
+      photo: getAssetUrl('timeline_5.jpeg'),
       photoCaption: 'Effortlessly Gorgeous 🌿',
       tag: 'Pure Admiration'
     },
@@ -63,7 +63,7 @@ export const MemoryTimeline = ({ friendName = 'Sreenya', initialMemories, onAddM
       title: 'Wanting To Be Your Safe Place 💖',
       location: 'Through Every Season',
       description: 'In good times and tough days, I always find myself wanting to protect your smile and cheer you on. You bring so much peace and brightness into my life, and standing by you feels so natural.',
-      photo: getAssetUrl('6.jpeg'),
+      photo: getAssetUrl('timeline_6.jpeg'),
       photoCaption: 'My Favorite Person 🌸',
       tag: 'Standing By You'
     },
@@ -73,7 +73,7 @@ export const MemoryTimeline = ({ friendName = 'Sreenya', initialMemories, onAddM
       title: 'Our Song: Vaama Vaama 🎶💖',
       location: 'Airport Memories & Deep In My Heart',
       description: 'Listening to "Vaama Vaama" always brings every single thought and emotion back to you. When the chorus hits at 1:10, time stands still and your smile is the only thing that matters in the whole world.',
-      photo: getAssetUrl('4.jpeg'),
+      photo: getAssetUrl('timeline_2.jpeg'),
       photoCaption: 'Vaama Vaama Moments ✨',
       tag: '1.10 🎶'
     },
@@ -83,7 +83,7 @@ export const MemoryTimeline = ({ friendName = 'Sreenya', initialMemories, onAddM
       title: 'To The Girl Who Stole My Heart 🎂',
       location: 'Straight From The Heart',
       description: `Happy Birthday, ${friendName}! You deserve all the laughter, happiness, and beauty this world has to offer today and always. Celebrating the wonderful person you are will always be my favorite day of the year.`,
-      photo: getAssetUrl('7.jpeg'),
+      photo: getAssetUrl('timeline_7.jpeg'),
       photoCaption: 'Celebrating You, Sreenya ❤️',
       tag: 'Happy Birthday Today! 🎂'
     },
@@ -275,7 +275,7 @@ export const MemoryTimeline = ({ friendName = 'Sreenya', initialMemories, onAddM
             onError={(e) => {
               if (!e.target.dataset.fallbackTried) {
                 e.target.dataset.fallbackTried = 'true';
-                e.target.src = getAssetUrl('1.jpeg');
+                e.target.src = getAssetUrl('timeline_1.jpeg');
               }
             }}
           />
@@ -377,7 +377,7 @@ export const MemoryTimeline = ({ friendName = 'Sreenya', initialMemories, onAddM
               onError={(e) => {
                 if (!e.target.dataset.fallbackTried) {
                   e.target.dataset.fallbackTried = 'true';
-                  e.target.src = getAssetUrl('1.jpeg');
+                  e.target.src = getAssetUrl('timeline_1.jpeg');
                 }
               }}
             />
