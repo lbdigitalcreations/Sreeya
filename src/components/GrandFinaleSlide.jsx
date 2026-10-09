@@ -13,7 +13,6 @@ import {
   Loader2,
   Quote,
   MessageSquareHeart,
-  Clock,
   Calendar
 } from 'lucide-react';
 import { audioEngine } from '../services/audioService';
@@ -29,19 +28,6 @@ export const GrandFinaleSlide = ({ friendName = 'Sreenya', onRestart, onPrevPage
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [lanterns, setLanterns] = useState([]);
-  const [storedWishes, setStoredWishes] = useState([]);
-
-  // Load saved wishes from localStorage
-  useEffect(() => {
-    try {
-      const saved = localStorage.getItem('birthday_lantern_wishes');
-      if (saved) {
-        setStoredWishes(JSON.parse(saved));
-      }
-    } catch (e) {
-      console.warn('Failed to load wishes from localStorage', e);
-    }
-  }, []);
 
   // Trigger continuous fireworks celebration when slide opens
   useEffect(() => {
@@ -151,16 +137,7 @@ export const GrandFinaleSlide = ({ friendName = 'Sreenya', onRestart, onPrevPage
       colors: ['#FFD700', '#FF69B4', '#FF1744', '#FFFFFF']
     });
 
-    // 3. Save to localStorage
-    const updated = [newLantern, ...storedWishes.slice(0, 5)];
-    setStoredWishes(updated);
-    try {
-      localStorage.setItem('birthday_lantern_wishes', JSON.stringify(updated));
-    } catch (err) {
-      console.warn(err);
-    }
-
-    // 4. Send email notification
+    // 3. Send email notification
     await sendEmailNotification(userWish.trim(), senderName.trim(), selectedTag);
 
     setIsSubmitting(false);
@@ -419,41 +396,6 @@ export const GrandFinaleSlide = ({ friendName = 'Sreenya', onRestart, onPrevPage
             <span className="text-[10px] text-pink-400/80">Sent with love 💖</span>
           </div>
         </motion.div>
-
-        {/* Recently Released Lantern Wishes Display */}
-        {storedWishes.length > 0 && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="max-w-xl mx-auto w-full text-left"
-          >
-            <div className="flex items-center justify-between mb-2 px-1">
-              <span className="text-xs font-bold text-amber-300 uppercase tracking-widest flex items-center gap-1.5">
-                <Clock className="w-3.5 h-3.5" /> Released Lanterns ({storedWishes.length})
-              </span>
-              <span className="text-[10px] text-pink-300/70">Floating among the stars ✨</span>
-            </div>
-
-            <div className="space-y-2">
-              {storedWishes.map((w) => (
-                <div
-                  key={w.id}
-                  className="p-3 rounded-2xl bg-black/40 border border-amber-400/30 backdrop-blur-sm flex items-start justify-between gap-3 text-xs text-pink-100"
-                >
-                  <div>
-                    <p className="font-medium italic leading-relaxed text-amber-100">
-                      "{w.text}"
-                    </p>
-                    <p className="text-[10px] text-pink-300 mt-1">
-                      From: <span className="font-bold text-white">{w.from}</span> &bull; {w.tag}
-                    </p>
-                  </div>
-                  <span className="text-base shrink-0">🏮</span>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-        )}
 
         {/* Final Celebration Actions */}
         <div className="pt-2 flex flex-wrap items-center justify-center gap-4">
