@@ -6,7 +6,6 @@ import { PhotoGallery } from './components/PhotoGallery';
 import { TypingMessage } from './components/TypingMessage';
 import { MemoryTimeline } from './components/MemoryTimeline';
 import { GrandFinaleSlide } from './components/GrandFinaleSlide';
-import { GrandFinale } from './components/GrandFinale';
 import { Footer } from './components/Footer';
 import { BackgroundEffects } from './components/BackgroundEffects';
 import { MusicPromptModal } from './components/MusicPromptModal';
@@ -19,7 +18,6 @@ function App() {
   const [friendName] = useState('Sreenya');
   const [customMessage] = useState('');
   const [candlesBlown, setCandlesBlown] = useState(false);
-  const [showGrandFinale, setShowGrandFinale] = useState(false);
 
   const [showBlowPrompt, setShowBlowPrompt] = useState(false);
   const [showMusicPrompt, setShowMusicPrompt] = useState(true);
@@ -137,12 +135,6 @@ function App() {
         friendName={friendName}
         onAccept={handleAcceptMusic}
         onDecline={handleDeclineMusic}
-      />
-
-      <GrandFinale
-        friendName={friendName}
-        isOpen={showGrandFinale}
-        onClose={() => setShowGrandFinale(false)}
       />
     </div>
   );
